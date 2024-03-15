@@ -4,7 +4,7 @@ export default function HomePage() {
   };
   return (
     <div>
-      <h1>This should work </h1> <button onClick={handleSubmit}>Log out</button>
+      <h1>This should work , Hello!</h1> <button onClick={handleSubmit}>Log out</button>
     </div>
   );
 }
