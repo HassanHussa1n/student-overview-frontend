@@ -1,4 +1,4 @@
-export default function FrontPage() {
+export default function HomePage() {
   const handleSubmit = () => {
     localStorage.removeItem("loggedInId");
   };
