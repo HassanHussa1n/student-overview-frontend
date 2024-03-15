@@ -8,7 +8,6 @@ export default function Main() {
         <Route path="/home/:id" element={<HomePage />} />
         <Route path="/" element={<Login />} />
       </Routes>
-      ;
     </div>
   );
 }
