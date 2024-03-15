@@ -1,3 +1,10 @@
 export default function FrontPage() {
-  return <h1>This should work </h1>;
+  const handleSubmit = () => {
+    localStorage.removeItem("loggedInId");
+  };
+  return (
+    <div>
+      <h1>This should work </h1> <button onClick={handleSubmit}>Log out</button>
+    </div>
+  );
 }

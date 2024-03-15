@@ -12,6 +12,7 @@ export default function Login() {
     setCurrentUser(
       teachers.find((useritem) => Number(useritem.id) === Number(id))
     );
+
     navigate(`/home/${id}`);
     localStorage.setItem("loggedInId", id);
   };

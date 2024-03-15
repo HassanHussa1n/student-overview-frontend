@@ -15,7 +15,7 @@ const DUMMY_TEACHERS = [
 
 function App() {
   //Dummy data for teacher array
-  const [teachers, setTeachers] = useState([DUMMY_TEACHERS]);
+  const [teachers, setTeachers] = useState([]);
   //Set currentuser = null if localStorage is not saved(logged out)
   const [currentUser, setCurrentUser] = useState(null);
   //Set the loggedin user the the last logged in
@@ -27,8 +27,16 @@ function App() {
         (userItem) => Number(userItem.id) === Number(loggedInId)
       );
       setCurrentUser(foundUser);
+      console.log(foundUser);
     }
   }, [teachers]);
+
+  //UseEffect for teachers
+  useEffect(() => {
+    setTeachers(DUMMY_TEACHERS);
+  }, []);
+
+  console.log(localStorage.getItem("loggedInId"));
   return (
     <div>
       {currentUser ? (
