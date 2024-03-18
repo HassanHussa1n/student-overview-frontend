@@ -1,13 +1,7 @@
-
 export default function StudentPage() {
- 
-  
-    return (
-      <div>
-  
-       
-  
-      </div>
-    );
-  }
-  
+  return (
+    <div>
+      <h2>Student</h2>
+    </div>
+  );
+}

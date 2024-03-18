@@ -38,7 +38,7 @@ function App() {
 
   console.log(localStorage.getItem("loggedInId"));
   return (
-    <div>
+    <div className="container">
       {currentUser ? (
         <MyContext.Provider value={{ teachers, currentUser, setCurrentUser }}>
           <Main />

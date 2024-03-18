@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function Login() {
   const { setCurrentUser, teachers } = useContext(LoginContext);
   const [id, setId] = useState(0);
-  const [error, setError] = useState("Wrong username or password");
+  const [errorMessage, setErrorMessage] = useState("");
   const [errorBool, setErrorBool] = useState(false);
   const navigate = useNavigate();
 
@@ -13,6 +13,7 @@ export default function Login() {
     event.preventDefault();
     if (!teachers.find((useritem) => Number(useritem.id) === Number(id))) {
       //Confirm there is an error finding username
+      setErrorMessage("Wrong username");
       setErrorBool(true);
     } else {
       setCurrentUser(
@@ -24,7 +25,7 @@ export default function Login() {
   };
   return (
     <div>
-      {errorBool && <h3>{error}</h3>}
+      {errorBool && <h3>{errorMessage}</h3>}
       <form onSubmit={handleSubmit}>
         <label htmlFor="first">Write your id</label>
         <input
