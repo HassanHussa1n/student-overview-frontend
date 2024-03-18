@@ -5,19 +5,26 @@ import { useState } from "react";
 export default function Login() {
   const { setCurrentUser, teachers } = useContext(LoginContext);
   const [id, setId] = useState(0);
+  const [error, setError] = useState("Wrong username or password");
+  const [errorBool, setErrorBool] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setCurrentUser(
-      teachers.find((useritem) => Number(useritem.id) === Number(id))
-    );
-
-    navigate(`/home/${id}`);
-    localStorage.setItem("loggedInId", id);
+    if (!teachers.find((useritem) => Number(useritem.id) === Number(id))) {
+      //Confirm there is an error finding username
+      setErrorBool(true);
+    } else {
+      setCurrentUser(
+        teachers.find((useritem) => Number(useritem.id) === Number(id))
+      );
+      navigate(`/home/${id}`);
+      localStorage.setItem("loggedInId", id);
+    }
   };
   return (
     <div>
+      {errorBool && <h3>{error}</h3>}
       <form onSubmit={handleSubmit}>
         <label htmlFor="first">Write your id</label>
         <input
