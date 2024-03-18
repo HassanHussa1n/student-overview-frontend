@@ -4,8 +4,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: black;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -29,22 +29,31 @@ a:hover {
   flex-direction: column;
 }
 
-.main-container {
+.container {
   display: flex;
-  flex-direction: row;
-  flex-grow: 1;
 }
 
 .sidebar {
   min-width: 10%;
-  height: 100%; /* Adjusts height to full page height */
-  background-color: #0E60DC;
+  height: 300px;
+  background-color: #0e60dc;
   color: white;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
   border-color: black;
   margin-right: 20px;
-  display: flex; /* Use flexbox */
-  flex-direction: column; /* Align children vertically */
+  display: flex;
+  order: -1;
+  position: fixed;
+  top: 5;
+  left: 5;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  position: relative;
+  margin-left: 15%;
 }
 
 .sidebar ul {
@@ -59,7 +68,7 @@ a:hover {
 }
 
 .sidebar ul li a:hover {
-  color: #f0f0f0; 
+  color: #f0f0f0;
   transform: scale(1.1);
 }
 
@@ -101,7 +110,6 @@ ul {
   color: #888;
 }
 
-
 .notes {
   max-width: 800px;
   margin: 0 auto;
@@ -134,8 +142,11 @@ ul {
   margin-bottom: 10px;
 }
 
-.add-note-btn, .delete-note-btn, .log-out-btn, .view-btn {
-  background-color: #0E60DC; 
+.add-note-btn,
+.delete-note-btn,
+.log-out-btn,
+.view-btn {
+  background-color: #0e60dc;
   border: none;
   color: white;
   padding: 10px 24px;
@@ -150,10 +161,18 @@ ul {
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-
-
-.add-note-btn:hover, .delete-note-btn:hover, .log-out-btn, .view-btn {
+.add-note-btn:hover,
+.delete-note-btn:hover,
+.log-out-btn,
+.view-btn {
   transform: scale(1.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.logo {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  z-index: 9999;
+}
