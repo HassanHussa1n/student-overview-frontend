@@ -6,7 +6,7 @@ export default function SideBar() {
   const context = useContext(MyContext);
   const navigate = useNavigate();
   const { setCurrentUser } = useContext(MyContext);
-
+  
   const handleSubmit = () => {
     localStorage.removeItem("loggedInId");
     navigate(`/`);
