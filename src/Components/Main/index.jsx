@@ -6,7 +6,7 @@ export default function Main() {
     <div>
       <Routes>
         <Route path="/home/:id" element={<HomePage />} />
-        <Route path="/" element={<Login />} />
+        <Route path="" element={<Login />} />
       </Routes>
     </div>
   );
