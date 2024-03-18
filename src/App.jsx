@@ -7,7 +7,9 @@ const MyContext = createContext();
 //Seperate context for login
 const LoginContext = createContext();
 
+
 function App() {
+  
   const [teachers, setTeachers] = useState([]);
   const [students, setStudents] = useState([]);
   //Set currentuser = null if localStorage is not saved(logged out)
