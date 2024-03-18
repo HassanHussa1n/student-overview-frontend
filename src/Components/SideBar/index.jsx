@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { MyContext } from "../../App.jsx";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import Logo from "../../assets/images/BobsLogo2-transparent.png";
 export default function SideBar() {
   const context = useContext(MyContext);
   const navigate = useNavigate();
@@ -16,6 +17,9 @@ export default function SideBar() {
   return (
     <nav className="sidebar">
       <ul>
+      <li>  
+      <img src={Logo} alt="Logo" className="logo" />
+      </li>
         <li>
           <Link to={`/home/${context.currentUser.id}`}>
             <p>Home</p>
