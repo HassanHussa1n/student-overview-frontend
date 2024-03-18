@@ -37,6 +37,11 @@ export default function SideBar() {
           </Link>
         </li>
         <li>
+          <Link to={`/classroom/${context.currentUser.id}`}>
+            <p>Classroom</p>
+          </Link>
+        </li>
+        <li>
           <button onClick={handleSubmit}>Log out</button>
         </li>
       </ul>

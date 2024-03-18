@@ -8,8 +8,8 @@ const MyContext = createContext();
 const LoginContext = createContext();
 
 function App() {
-  //Dummy data for teacher array
   const [teachers, setTeachers] = useState([]);
+  const [students, setStudents] = useState([]);
   //Set currentuser = null if localStorage is not saved(logged out)
   const [currentUser, setCurrentUser] = useState(null);
   //Set the loggedin user the the last logged in
@@ -32,11 +32,20 @@ function App() {
       .then((item) => setTeachers(item));
   }, []);
 
+  //UseEffect for students
+  useEffect(() => {
+    fetch(`https://boolean-api-server.fly.dev/knutsr0501/contact`)
+      .then((response) => response.json())
+      .then((item) => setStudents(item));
+  }, []);
+
   console.log(localStorage.getItem("loggedInId"));
   return (
     <div className="container">
       {currentUser ? (
-        <MyContext.Provider value={{ teachers, currentUser, setCurrentUser }}>
+        <MyContext.Provider
+          value={{ teachers, students, currentUser, setCurrentUser }}
+        >
           <Main />
         </MyContext.Provider>
       ) : (

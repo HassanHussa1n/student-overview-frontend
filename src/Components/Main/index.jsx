@@ -5,6 +5,7 @@ import LecturePage from "./LecturePage";
 import StudentPage from "./StudentPage";
 import TeacherPage from "./TeacherPage";
 import SideBar from "../SideBar";
+import ClassroomPage from "./ClassroomPage";
 export default function Main() {
   return (
     <div className="main-container">
@@ -14,6 +15,7 @@ export default function Main() {
         <Route path="/lectures/:id" element={<LecturePage />} />
         <Route path="/students/:id" element={<StudentPage />} />
         <Route path="/teachers/:id" element={<TeacherPage />} />
+        <Route path="/classroom/:id" element={<ClassroomPage />} />
         <Route path="" element={<Login />} />
       </Routes>
     </div>
