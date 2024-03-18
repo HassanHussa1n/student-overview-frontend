@@ -133,7 +133,7 @@ ul {
   margin-bottom: 10px;
 }
 
-.add-note-btn, .delete-note-btn {
+.add-note-btn, .delete-note-btn, .log-out-btn, .view-btn {
   background-color: #0E60DC; 
   border: none;
   color: white;
@@ -141,14 +141,17 @@ ul {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-family: "Righteous";
+  font-size: 12px;
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 8px;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.add-note-btn:hover, .delete-note-btn:hover {
+
+
+.add-note-btn:hover, .delete-note-btn:hover, .log-out-btn, .view-btn {
   transform: scale(1.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

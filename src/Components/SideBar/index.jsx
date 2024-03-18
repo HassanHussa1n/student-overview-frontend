@@ -42,7 +42,7 @@ export default function SideBar() {
           </Link>
         </li>
         <li>
-          <button onClick={handleSubmit}>Log out</button>
+          <button onClick={handleSubmit} className="log-out-btn">Log out</button>
         </li>
       </ul>
     </nav>

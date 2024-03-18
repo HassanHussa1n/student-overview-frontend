@@ -5,10 +5,13 @@ export default function TeacherPage() {
   const { teachers } = useContext(MyContext);
 
   return (
+    <>
+    <h1>Teachers</h1>
     <ul className="teacher-list">
       {teachers.map((teacher, index) => {
         return <TeacherItem teacher={teacher} key={index} />;
       })}
     </ul>
+    </>
   );
 }

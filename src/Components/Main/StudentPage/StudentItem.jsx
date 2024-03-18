@@ -2,7 +2,7 @@ export default function StudentItem(props) {
   return (
     <li>
       <p>{props.student.lastName}</p>
-      <button>View</button>
+      <button className="view-btn">View</button>
     </li>
   );
 }
