@@ -145,7 +145,10 @@ ul {
 .add-note-btn,
 .delete-note-btn,
 .log-out-btn,
-.view-btn {
+.view-btn,
+.create-classroom-btn,
+.swap-classroom-btn,
+.edit-classroom-btn {
   background-color: #0e60dc;
   border: none;
   color: white;
@@ -191,4 +194,40 @@ ul {
 .note p {
   flex-grow: 1; 
   margin: 0;
+}
+
+.classroom-page {
+  max-width: 800px;
+  margin: 0 auto;
+  font-style: italic;
+  padding: 20px;
+  color: black;
+  background-color: lightgray;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.classroom-page h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.button-container {
+  margin-bottom: 20px;
+}
+
+.form-container {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 90%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
