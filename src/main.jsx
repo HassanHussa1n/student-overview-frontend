@@ -7,6 +7,10 @@ import "./index.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
+      <link
+        href="https://fonts.googleapis.com/css?family=Righteous"
+        rel="stylesheet"
+      ></link>
       <App />
     </BrowserRouter>
   </React.StrictMode>
