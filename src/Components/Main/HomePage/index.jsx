@@ -5,7 +5,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <h1> Hello {currentUser.name} </h1>
+      <h1> Hello {currentUser.firstName} </h1>
     </div>
   );
 }

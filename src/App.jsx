@@ -6,12 +6,6 @@ import "./App.css";
 const MyContext = createContext();
 //Seperate context for login
 const LoginContext = createContext();
-const DUMMY_TEACHERS = [
-  { id: 1, name: "Dave" },
-  { id: 2, name: "Knut" },
-  { id: 3, name: "Hassan" },
-  { id: 4, name: "Mads" },
-];
 
 function App() {
   //Dummy data for teacher array
@@ -33,7 +27,9 @@ function App() {
 
   //UseEffect for teachers
   useEffect(() => {
-    setTeachers(DUMMY_TEACHERS);
+    fetch(`https://boolean-api-server.fly.dev/knutsr0501/contact`)
+      .then((response) => response.json())
+      .then((item) => setTeachers(item));
   }, []);
 
   console.log(localStorage.getItem("loggedInId"));
