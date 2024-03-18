@@ -10,6 +10,8 @@ export default function StudentPage() {
   
 
   return (
+    <>
+    <h1>Students</h1>
     <ul className="student-list">
       {students.map((student, index) => {
         return (
@@ -17,5 +19,6 @@ export default function StudentPage() {
         );
       })}
     </ul>
+    </>
   );
 }

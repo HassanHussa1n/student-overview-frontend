@@ -38,6 +38,7 @@ export default function StudentItem(props) {
   return (
     <li>
       <p>{props.student.lastName}</p>
+
       <button onClick={openModal}>View</button>
       <StudentViewModal
         isOpen={modalOpen}
@@ -45,6 +46,9 @@ export default function StudentItem(props) {
         student={props.student}
         closeModal={closeModal}
       />
+
+      <button className="view-btn">View</button>
+
     </li>
   );
 }

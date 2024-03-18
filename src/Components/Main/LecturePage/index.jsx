@@ -16,8 +16,10 @@ export default function LecturePage() {
   console.log(posts)
 
   return (
+    <>
+    <h1>Lectures</h1>
     <div>
-      <h1>Lectures</h1>
+      
       <div className='lectures-div'>
         <ul className='lectures-list'>
          {posts.map((user, index) => (
@@ -30,5 +32,6 @@ export default function LecturePage() {
         </ul>
       </div>
     </div>
+    </>
   );
 }

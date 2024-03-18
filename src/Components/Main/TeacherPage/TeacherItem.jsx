@@ -14,7 +14,7 @@ export default function TeacherItem(props) {
   return (
     <li>
       <p>{props.teacher.firstName}</p>
-      <button onClick={openModal}>View</button>
+      <button onClick={openModal}className="view-btn">View</button>
       <TeacherViewModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
