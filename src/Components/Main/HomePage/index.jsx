@@ -1,9 +1,20 @@
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { MyContext } from "../../../App.jsx";
 
 export default function HomePage() {
   const { currentUser } = useContext(MyContext);
   const [notes, setNotes] = useState([]);
+
+  useEffect(() => {
+    const storedNotes = localStorage.getItem(`notes-${currentUser.id}`);
+    if (storedNotes) {
+      setNotes(JSON.parse(storedNotes));
+    }
+  }, [currentUser.id]);
+
+  useEffect(() => {
+    localStorage.setItem(`notes-${currentUser.id}`, JSON.stringify(notes));
+  }, [notes, currentUser.id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +37,7 @@ export default function HomePage() {
         Hello, {currentUser.firstName} {currentUser.lastName}
       </h1>
 
-      <div className="notes">
+      <div>
         <h2>Look who's back! </h2>
         <p>
           Hope you are well, {currentUser.firstName}. Inside of this little
@@ -41,15 +52,16 @@ export default function HomePage() {
           <button type="submit" className="add-note-btn">Add Note</button>
         </form>
         <div className="notes-list">
-        <ul>
-          {notes.map((note, index) => (
-            <li key={index}>
-             <p> {note} </p>
-
-              <button onClick={() => handleDelete(index)}className="delete-note-btn">Delete</button>
-            </li>
-          ))}
-        </ul>
+          <ul>
+            {notes.map((note, index) => (
+              <li key={index}>
+                <div className="note">  
+                  <p>{note}</p>
+                  <button onClick={() => handleDelete(index)} className="delete-note-btn">Delete</button>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
