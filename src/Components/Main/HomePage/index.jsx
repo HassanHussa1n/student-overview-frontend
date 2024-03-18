@@ -11,8 +11,10 @@ export default function HomePage() {
   };
   return (
     <div>
+
       <h1> Hello {currentUser.name} </h1>
       <button onClick={handleSubmit}>Log out</button>
+
     </div>
   );
 }
