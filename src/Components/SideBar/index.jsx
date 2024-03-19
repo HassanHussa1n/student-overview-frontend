@@ -43,7 +43,7 @@ export default function SideBar() {
         </li>
         <li>
           <Link to={`/classroom/${context.currentUser.id}`}>
-            {currentClassroom ? (
+            {currentClassroom !== null ? (
               <p>{currentClassroom.name}</p>
             ) : (
               <p>Classroom</p>

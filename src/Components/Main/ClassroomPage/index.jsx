@@ -1,9 +1,11 @@
 import { useState, useEffect, useContext } from "react";
 import ClassroomViewModal from "./ClassroomViewModal.jsx";
 import { MyContext } from "../../../App.jsx";
+import ClassroomCreateModal from "./ClassroomCreateModal.jsx";
 
 export default function ClassroomPage() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [createModalOpen, setCreateModalOpen] = useState(false);
   const [name, setName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -16,7 +18,6 @@ export default function ClassroomPage() {
   };
 
   //UseEffect for states
-
   useEffect(() => {
     if (currentClassroom) {
       setName(currentClassroom.name);
@@ -32,16 +33,30 @@ export default function ClassroomPage() {
   const openModal = () => {
     setModalOpen(true);
   };
-
   const closeModal = () => {
     setModalOpen(false);
+  };
+  const createOpenModal = () => {
+    setCreateModalOpen(true);
+  };
+  const createCloseModal = () => {
+    setCreateModalOpen(false);
   };
 
   return (
     <div className="classroom-page">
       <h1>Edit Classroom</h1>
       <div className="button-container">
-        <button type="submit" className="create-classroom-btn">
+        <ClassroomCreateModal
+          createIsOpen={createModalOpen}
+          createOnClose={() => setCreateModalOpen(false)}
+          createCloseModal={createCloseModal}
+        />
+        <button
+          type="button"
+          className="create-classroom-btn"
+          onClick={createOpenModal}
+        >
           Create New
         </button>
 
