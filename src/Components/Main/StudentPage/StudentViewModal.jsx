@@ -79,6 +79,7 @@ export default function StudentViewModal({
   const [exercises, setExercises] = useState([]);
   const [grades, setGrades] = useState([]);
   const [gradeList, setGradeList] = useState([]);
+  const [editedStudent, setEditedStudent] = useState([]);
   //UseEffect for exercises
   useEffect(() => {
     setExercises(DUMMY_EXERCISES);
@@ -107,6 +108,16 @@ export default function StudentViewModal({
   }, [student]);
   const grade = gradeList[1];
   console.log(gradeList);
+
+  const handleInputChange = (e) => {
+    const {name, value} = e.target;
+    setEditedStudent({...editedStudent, [name]: value});
+  };
+
+  const saveChanges = () => {
+     console.log("Edited student: ", editedStudent)
+  }
+
   return (
     <Modal
       isOpen={isOpen}
@@ -117,7 +128,7 @@ export default function StudentViewModal({
         {student.firstName} {student.lastName}
         {gradeList.length !== 0 ? (
           <div>
-            <h3>Exercises</h3>
+            <h4>Exercises</h4>
             <ul>
               {gradeList.map((gradeItem, index) => {
                 return <GradeItem gradeItem={gradeItem} key={index} />;
@@ -128,9 +139,33 @@ export default function StudentViewModal({
           <></>
         )}
       </h2>
-
+      <input
+        type="text"
+        name="firstName"
+        placeholder="First Name"
+        value={editedStudent.firstName || student.firstName} // Autofill with existing data
+        onChange={handleInputChange}
+      />
+      <br />
+      <input
+        type="text"
+        name="lastName"
+        placeholder="Last Name"
+        value={editedStudent.lastName || student.lastName} // Autofill with existing data
+        onChange={handleInputChange}
+      />
+      <br />
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        value={editedStudent.email || student.email} // Autofill with existing data
+        onChange={handleInputChange}
+      />
+      <br />
+      <button onClick={saveChanges} className="edit-student-btn">Save Changes</button>
       <button onClick={closeModal} className="close-btn">
-        X
+      <span className="close-btn-text">X</span>
       </button>
     </Modal>
   );
