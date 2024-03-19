@@ -149,7 +149,8 @@ ul {
 .create-classroom-btn,
 .swap-classroom-btn,
 .edit-classroom-btn,
-.edit-student-btn {
+.edit-student-btn,
+.submit-btn {
   background-color: #0e60dc;
   border: none;
   color: white;
@@ -180,6 +181,10 @@ ul {
   cursor: pointer;
   border-radius: 8px;
   transition: transform 0.2s, 
+}
+
+.curr-grade {
+  font-size: small;
 }
 
 .close-btn-text {
@@ -333,4 +338,43 @@ ul {
 .grade-form {
   display: flex;
   flex-direction: row;
+}
+
+.custom-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 80%;
+  width: 400px; 
+  height: 300px;
+  max-height: 80%;
+  overflow-y: auto; 
+}
+
+.custom-modal input[type="text"]
+{
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.custom-modal textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
