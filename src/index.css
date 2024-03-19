@@ -144,7 +144,7 @@ ul {
 
 .add-note-btn,
 .delete-note-btn,
-.log-out-btn,
+
 .view-btn,
 .create-classroom-btn,
 .swap-classroom-btn,
@@ -159,6 +159,22 @@ ul {
   font-family: "Righteous";
   font-size: 12px;
   margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.log-out-btn {
+  background-color: #ffffff;
+  border: none;
+  color: black;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: "Righteous";
+  font-size: 12px;
+  margin: 50px 2px;
   cursor: pointer;
   border-radius: 8px;
   transition: transform 0.2s, box-shadow 0.2s;
