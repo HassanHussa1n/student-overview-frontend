@@ -40,24 +40,31 @@ export default function HomePage() {
       <div>
         <h2>Look who's back! </h2>
         <p>
-          Hope you are well, {currentUser.firstName}. Inside of this little
-          box, you can add your notes for the lectures you will be having
-          today. Feel free to add or delete the notes, but make sure to never
-          depend on them 😊
+          Hope you are well, {currentUser.firstName}. Inside of this little box,
+          you can add your notes for the lectures you will be having today. Feel
+          free to add or delete the notes, but make sure to never depend on them
+          😊
         </p>
-        
+
         <form onSubmit={handleSubmit} style={{ textAlign: "center" }}>
           <textarea name="note" rows="3" cols="30" placeholder="Add a note" />
           <br />
-          <button type="submit" className="add-note-btn">Add Note</button>
+          <button type="submit" className="add-note-btn">
+            Add Note
+          </button>
         </form>
         <div className="notes-list">
           <ul>
             {notes.map((note, index) => (
               <li key={index}>
-                <div className="note">  
+                <div className="note">
                   <p>{note}</p>
-                  <button onClick={() => handleDelete(index)} className="delete-note-btn">Delete</button>
+                  <button
+                    onClick={() => handleDelete(index)}
+                    className="delete-note-btn"
+                  >
+                    Delete
+                  </button>
                 </div>
               </li>
             ))}

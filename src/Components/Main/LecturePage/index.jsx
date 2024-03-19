@@ -3,17 +3,17 @@ import LectureItem from './LectureItem'
 export default function LecturePage() {
 
 
-  const [posts, setPosts] = useState([])
+  const [lectures, setLectures] = useState([])
 
   useEffect(() => {
-    fetch(`https://boolean-api-server.fly.dev/hassanhussa1n/post`)
+    fetch(`http://localhost:4000/lecture`)
     .then(response => response.json())
-    .then(setPosts)
+    .then(setLectures)
     }, [])
 
    
 
-  console.log(posts)
+  console.log(lectures)
 
   return (
     <>
@@ -22,8 +22,8 @@ export default function LecturePage() {
       
       <div className='lectures-div'>
         <ul className='lectures-list'>
-         {posts.map((lecture, index) => (
-          <LectureItem post={lecture} key={index}/>
+         {lectures.map((lecture, index) => (
+          <LectureItem lecture={lecture} key={index}/>
 
 
          ))}

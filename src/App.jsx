@@ -70,14 +70,15 @@ function App() {
 
   //UseEffect for teachers
   useEffect(() => {
-    fetch(`https://boolean-api-server.fly.dev/knutsr0501/contact`)
+    fetch(`http://localhost:4000/teacher`)
       .then((response) => response.json())
       .then((item) => setTeachers(item));
   }, []);
 
+  console.log("Teachers: ", teachers)
   //UseEffect for students
   useEffect(() => {
-    fetch(`https://boolean-api-server.fly.dev/knutsr0501/contact`)
+    fetch(`http://localhost:4000/student`)
       .then((response) => response.json())
       .then((item) => setStudents(item));
   }, []);
