@@ -144,7 +144,6 @@ ul {
 
 .add-note-btn,
 .delete-note-btn,
-
 .view-btn,
 .create-classroom-btn,
 .swap-classroom-btn,
@@ -166,7 +165,6 @@ ul {
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-
 .close-btn {
   background-color: rgb(204, 28, 28);
   border: none;
@@ -180,7 +178,7 @@ ul {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 8px;
-  transition: transform 0.2s, 
+  transition: transform 0.2s;
 }
 
 .curr-grade {
@@ -221,6 +219,7 @@ ul {
   right: 0;
   margin: 10px;
   z-index: 9999;
+  border-radius: 30px;
 }
 
 .note {
@@ -268,28 +267,27 @@ ul {
 }
 
 .note p {
-  flex-grow: 1; 
+  flex-grow: 1;
   margin: 0;
 }
 
 .lecture p {
-  flex-grow: 1; 
+  flex-grow: 1;
   margin: 0;
 }
 
 .teacher p {
-  flex-grow: 1; 
+  flex-grow: 1;
   margin: 0;
 }
 
 .student p {
-  flex-grow: 1; 
+  flex-grow: 1;
   margin: 0;
 }
 
 .radio-number {
-  display:flow-root; 
-  
+  display: flow-root;
 }
 
 .classroom-page {
@@ -332,7 +330,6 @@ ul {
   display: block;
   text-align: center;
   font-size: small;
-  
 }
 
 .grade-form {
@@ -350,14 +347,13 @@ ul {
   padding: 20px;
   border-radius: 8px;
   max-width: 80%;
-  width: 400px; 
+  width: 400px;
   height: 300px;
   max-height: 80%;
-  overflow-y: auto; 
+  overflow-y: auto;
 }
 
-.custom-modal input[type="text"]
-{
+.custom-modal input[type="text"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -365,7 +361,7 @@ ul {
   border-radius: 5px;
   box-sizing: border-box;
   font-size: 16px;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .custom-modal textarea {
@@ -376,5 +372,5 @@ ul {
   border-radius: 5px;
   box-sizing: border-box;
   font-size: 14px;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }

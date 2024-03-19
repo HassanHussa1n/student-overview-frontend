@@ -51,10 +51,14 @@ function App() {
       );
       setCurrentUser(foundUser);
       console.log(foundUser);
+    }
+  }, [teachers]);
 
-      //Set classroom based on user
-      //Set the key to something informative
-      const keyname = "user" + loggedInId;
+  useEffect(() => {
+    //Set classroom based on user
+    //Set the key to something informative
+    if (currentUser) {
+      const keyname = "user" + currentUser.id;
       //Get the value of current classroom
       const classroomId = localStorage.getItem(keyname);
       console.log("classid:", classroomId);
@@ -64,9 +68,11 @@ function App() {
         );
         setCurrentClassroom(foundClassroom);
         console.log("object classroom:", currentClassroom);
+      } else {
+        setCurrentClassroom(null);
       }
     }
-  }, [teachers]);
+  }, [classrooms, currentUser]);
 
   //UseEffect for teachers
   useEffect(() => {
