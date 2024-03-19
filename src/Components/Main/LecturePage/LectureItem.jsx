@@ -1,40 +1,36 @@
-import React, { useState } from "react"
-import Modal from 'react-modal';
+import React, { useState } from "react";
+import Modal from "react-modal";
 export default function LectureItem(props) {
+  const { user } = props;
+  const [modalOpen, setModalOpen] = useState(false);
+  const [formData, setFormData] = useState({});
 
-const {user} = props 
-const [modalOpen, setModalOpen] = useState(false)
-const [formData, setFormData] = useState({})
-
-const handleInputChange = (e) => {
+  const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  }
+  };
 
   const handleSubmit = () => {
     console.log("Lecture has been edited", formData);
     closeModal();
-  }
+  };
 
   const openModal = () => {
-    setModalOpen(true)
-  }
+    setModalOpen(true);
+  };
 
   const closeModal = () => {
-    setModalOpen(false)
-  }
+    setModalOpen(false);
+  };
 
-  const deleteLecture = () => {
+  const deleteLecture = () => {};
 
-  }
-
-
-return (
+  return (
     <li>
     <div className="lecture">  
     <h4>{user.title}</h4>
     <button onClick={openModal} className="view-btn">View</button>
     </div>
-    <Modal isOpen={modalOpen} onRequestClose={closeModal}>
+    <Modal isOpen={modalOpen} onRequestClose={closeModal} appElement={document.getElementById("root")}>
       <h2>Fill out the form</h2>
       <form>
         <input

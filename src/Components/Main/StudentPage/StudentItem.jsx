@@ -1,10 +1,12 @@
 import { useState } from "react";
 import StudentViewModal from "./StudentViewModal.jsx";
 
+
 export default function StudentItem(props) {
-  
   const [modalOpen, setModalOpen] = useState(false);
- 
+
+  
+
   const openModal = () => {
     setModalOpen(true);
   };
