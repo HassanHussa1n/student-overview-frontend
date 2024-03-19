@@ -24,6 +24,7 @@ export default function StudentItem(props) {
         onClose={() => setModalOpen(false)}
         student={props.student}
         closeModal={closeModal}
+        
       />
 
       <button className="view-btn" onClick={openModal}>
