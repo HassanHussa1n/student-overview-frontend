@@ -191,7 +191,55 @@ ul {
   align-items: center;
 }
 
+.lecture {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.teacher {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.student {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .note p {
+  flex-grow: 1; 
+  margin: 0;
+}
+
+.lecture p {
+  flex-grow: 1; 
+  margin: 0;
+}
+
+.teacher p {
+  flex-grow: 1; 
+  margin: 0;
+}
+
+.student p {
   flex-grow: 1; 
   margin: 0;
 }
