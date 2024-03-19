@@ -121,6 +121,7 @@ export default function StudentViewModal({
       isOpen={isOpen}
       onRequestClose={onClose}
       appElement={document.getElementById("root")}
+      className="custom-modal"
     >
       <h2>
         {student.firstName} {student.lastName}
