@@ -1,7 +1,6 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { LoginContext } from "../../App.jsx";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 export default function Login() {
   const { setCurrentUser, teachers } = useContext(LoginContext);
   const [id, setId] = useState(0);
