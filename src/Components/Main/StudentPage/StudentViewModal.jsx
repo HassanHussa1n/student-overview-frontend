@@ -91,7 +91,6 @@ export default function StudentViewModal({
   useEffect(() => {
     //New list to present the user
     const newList = [];
-
     for (let i = 0; i < grades.length; i++) {
       const exercise = exercises.find(
         (item) => Number(item.id) === Number(grades[i].exerciseId)
@@ -105,8 +104,7 @@ export default function StudentViewModal({
       }
     }
     setGradeList(newList);
-  }, [student]);
-  const grade = gradeList[1];
+  }, [exercises]);
   console.log(gradeList);
 
   const handleInputChange = (e) => {
