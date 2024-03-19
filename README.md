@@ -1,8 +1,13 @@
-# React + Vite
+# Welcome to Bob's Grading! 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Remember students, Bob will judge you!
 
-Currently, two official plugins are available:
+This repository is the frontend part of the "Bob's Grading" Application.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+
+The Developers are: 
+
+- @knutsr0501 - Knut Rostad
+- @hassanhussa1n - Hassan Hussain
+- @migzus - Mads Gjengaar
