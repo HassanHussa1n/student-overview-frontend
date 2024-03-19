@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { MyContext } from "../../../App.jsx";
 import ClassroomItem from "./ClassroomItem.jsx";
 export default function ClassroomViewModal({ isOpen, onClose, closeModal }) {
-  const { classrooms, currentUser, currentClassroom } = useContext(MyContext);
+  const { classrooms, currentUser } = useContext(MyContext);
   const [userClassrooms, setUserClassrooms] = useState([]);
 
   useEffect(() => {
