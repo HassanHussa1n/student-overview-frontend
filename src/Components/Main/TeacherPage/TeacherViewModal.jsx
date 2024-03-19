@@ -13,7 +13,7 @@ export default function TeacherViewModal({
       <p>{teacher.email}</p>
 
       <button onClick={closeModal} className="close-btn">
-        X
+        <span className="close-btn-text">X</span>
       </button>
     </Modal>
   );

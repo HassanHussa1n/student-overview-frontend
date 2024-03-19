@@ -148,7 +148,8 @@ ul {
 .view-btn,
 .create-classroom-btn,
 .swap-classroom-btn,
-.edit-classroom-btn {
+.edit-classroom-btn,
+.edit-student-btn {
   background-color: #0e60dc;
   border: none;
   color: white;
@@ -162,6 +163,27 @@ ul {
   cursor: pointer;
   border-radius: 8px;
   transition: transform 0.2s, box-shadow 0.2s;
+}
+
+
+.close-btn {
+  background-color: rgb(204, 28, 28);
+  border: none;
+  color: white;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: "Righteous";
+  font-size: 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.2s, 
+}
+
+.close-btn-text {
+  color: white;
 }
 
 .log-out-btn {
@@ -260,6 +282,11 @@ ul {
   margin: 0;
 }
 
+.radio-number {
+  display:flow-root; 
+  
+}
+
 .classroom-page {
   max-width: 800px;
   margin: 0 auto;
@@ -294,4 +321,16 @@ ul {
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.radio-number {
+  display: block;
+  text-align: center;
+  font-size: small;
+  
+}
+
+.grade-form {
+  display: flex;
+  flex-direction: row;
 }
