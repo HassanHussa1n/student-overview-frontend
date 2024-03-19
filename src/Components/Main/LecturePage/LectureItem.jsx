@@ -38,7 +38,7 @@ export default function LectureItem(props) {
         appElement={document.getElementById("root")}
         className="custom-modal"
       >
-        <h2>Fill out the form</h2>
+        <h2>Current Lecture</h2>
         <form>
           <input
             type="text"
@@ -62,13 +62,27 @@ export default function LectureItem(props) {
             onChange={handleInputChange}
           />
           {lecture.exercises.map((exercise, index) => {
-            <input key={index}
-              type="text"
-              name="exercise"
-              value={exercise}
-              placeholder="Name"
-              onChange={handleInputChange}
-            />
+            return (
+              <>
+              <p>Exercises</p>
+              <input
+                key={index}
+                type="text"
+                name={`exercise${index}`}
+                value={exercise.name}
+                placeholder="Name"
+                onChange={handleInputChange}
+              />
+              <input
+                key={index}
+                type="text"
+                name={`exercise${index}`}
+                value={exercise.linkToRepo}
+                placeholder="Name"
+                onChange={handleInputChange}
+              />
+              </>
+            );
           })}
           <button type="button" onClick={handleSubmit} className="submit-btn">
             Submit
