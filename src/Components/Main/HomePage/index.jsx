@@ -41,7 +41,7 @@ export default function HomePage() {
         <h2>Look who's back! </h2>
         <p>
           Hope you are well, {currentUser.firstName}. Inside of this little
-          div, you can add your notes for the lectures you will be having
+          box, you can add your notes for the lectures you will be having
           today. Feel free to add or delete the notes, but make sure to never
           depend on them 😊
         </p>

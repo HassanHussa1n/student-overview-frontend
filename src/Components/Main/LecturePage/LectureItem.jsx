@@ -30,8 +30,10 @@ const handleInputChange = (e) => {
 
 return (
     <li>
+    <div className="lecture">  
     <h4>{user.title}</h4>
     <button onClick={openModal} className="view-btn">View</button>
+    </div>
     <Modal isOpen={modalOpen} onRequestClose={closeModal}>
       <h2>Fill out the form</h2>
       <form>
