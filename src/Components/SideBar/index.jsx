@@ -6,8 +6,9 @@ import Logo from "../../assets/images/BobsLogo2-transparent.png";
 export default function SideBar() {
   const context = useContext(MyContext);
   const navigate = useNavigate();
-  const { setCurrentUser } = useContext(MyContext);
-  
+  const { setCurrentUser, currentClassroom, currentUser } =
+    useContext(MyContext);
+
   const handleSubmit = () => {
     localStorage.removeItem("loggedInId");
     navigate(`/`);
@@ -17,12 +18,12 @@ export default function SideBar() {
   return (
     <nav className="sidebar">
       <ul>
-      <li>  
-      <img src={Logo} alt="Logo" className="logo" />
-      </li>
+        <li>
+          <img src={Logo} alt="Logo" className="logo" />
+        </li>
         <li>
           <Link to={`/home/${context.currentUser.id}`}>
-            <p>Home</p>
+            <p>{currentUser.firstName}</p>
           </Link>
         </li>
         <li>
@@ -42,11 +43,17 @@ export default function SideBar() {
         </li>
         <li>
           <Link to={`/classroom/${context.currentUser.id}`}>
-            <p>Classroom</p>
+            {currentClassroom ? (
+              <p>{currentClassroom.name}</p>
+            ) : (
+              <p>Classroom</p>
+            )}
           </Link>
         </li>
         <li>
-          <button onClick={handleSubmit} className="log-out-btn">Log out</button>
+          <button onClick={handleSubmit} className="log-out-btn">
+            Log out
+          </button>
         </li>
       </ul>
     </nav>

@@ -6,7 +6,11 @@ export default function TeacherViewModal({
   teacher,
 }) {
   return (
-    <Modal isOpen={isOpen} onRequestClose={onClose}>
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onClose}
+      appElement={document.getElementById("root")}
+    >
       <h2>
         {teacher.firstName} {teacher.lastName}
       </h2>
