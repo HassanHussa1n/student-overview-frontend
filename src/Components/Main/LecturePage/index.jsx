@@ -22,8 +22,8 @@ export default function LecturePage() {
       
       <div className='lectures-div'>
         <ul className='lectures-list'>
-         {posts.map((user, index) => (
-          <LectureItem user={user} key={index}/>
+         {posts.map((lecture, index) => (
+          <LectureItem post={lecture} key={index}/>
 
 
          ))}

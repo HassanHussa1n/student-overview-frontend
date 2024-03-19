@@ -45,7 +45,7 @@ export default function GradeItem(props) {
           
         </label>
       </form>
-      <p>Current Grade: {props.gradeItem.grade}</p>
+      <p className="curr-grade">Current Grade: {props.gradeItem.grade}</p>
 
     </li>
   );
