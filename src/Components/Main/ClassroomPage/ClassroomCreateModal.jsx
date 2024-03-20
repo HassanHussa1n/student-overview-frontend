@@ -32,13 +32,7 @@ export default function ClassroomCreateModal({
           value={newClassroom.name}
           onChange={handleInputChange}
         />
-        <textarea
-          type="textarea"
-          name="content"
-          value={post.content}
-          placeholder="Content"
-          onChange={handleInputChange}
-        />
+        
         <button type="button" onClick={handleSubmit} className="submit-btn">
           Submit
         </button>
