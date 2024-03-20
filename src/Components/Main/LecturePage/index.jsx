@@ -2,9 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import LectureItem from "./LectureItem";
 import { MyContext } from "../../../App";
 export default function LecturePage() {
-  const { lectures, currentClassroom } = useContext(MyContext);
-
-  console.log("Lectures:", lectures);
+  const { currentClassroom } = useContext(MyContext);
 
   return (
     <>
@@ -13,12 +11,12 @@ export default function LecturePage() {
         <div className="lectures-div">
           {currentClassroom ? (
             <ul className="lectures-list">
-              {lectures.map((lecture, index) => (
+              {currentClassroom.lectures.map((lecture, index) => (
                 <LectureItem lecture={lecture} key={index} />
               ))}
             </ul>
           ) : (
-            <p>Empty classroom</p>
+            <p>Choose a classroom!</p>
           )}
         </div>
       </div>

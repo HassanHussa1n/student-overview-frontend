@@ -15,7 +15,7 @@ export default function StudentPage() {
           })}
         </ul>
       ) : (
-        <p>Empty classroom</p>
+        <p>Choose a classroom!</p>
       )}
     </>
   );
