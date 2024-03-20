@@ -13,7 +13,7 @@ export default function ClassroomCreateModal({
     startDate: "",
     endDate: "",
   });
-  const { classrooms, currentUser } = useContext(MyContext);
+  const { currentUser } = useContext(MyContext);
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
