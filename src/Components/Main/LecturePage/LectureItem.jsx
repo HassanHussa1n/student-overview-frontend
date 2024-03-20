@@ -85,8 +85,10 @@ export default function LectureItem(props) {
             );
           })}
           <button type="button" onClick={handleSubmit} className="submit-btn">
-            Submit
+          Confirm Edit
           </button>
+          <button type="button"
+          className="delete-btn" onClick={deleteLecture()}>Delete Lecture</button>
           <button
             type="button"
             onClick={closeModal || deleteLecture}

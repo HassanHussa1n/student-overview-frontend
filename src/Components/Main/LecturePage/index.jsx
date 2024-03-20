@@ -1,19 +1,75 @@
 import { useState, useEffect, useContext } from "react";
 import LectureItem from "./LectureItem";
+import Modal from "react-modal";
 import { MyContext } from "../../../App";
 export default function LecturePage() {
-  const { lectures, currentClassroom } = useContext(MyContext);
+  const { currentClassroom } = useContext(MyContext);
+  const [modalOpen, setModalOpen] = useState(false);
 
-  console.log("Lectures:", lectures);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+  const createNewLecture = () => {};
 
   return (
     <>
-      <h1>Lectures</h1>
+      <div className="lectures-header">
+        <h1>Lectures</h1>
+        <button className="create-btn" onClick={openModal}>
+          Create New
+        </button>
+      </div>
+      <Modal
+        isOpen={modalOpen}
+        onRequestClose={closeModal}
+        appElement={document.getElementById("root")}
+        className="custom-modal"
+      >
+        <h2>Create Lecture</h2>
+        <form>
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            
+          />
+          <textarea
+            type="textarea"
+            name="content"
+            placeholder="Content"
+            
+          />
+          <input
+            type="text"
+            name="date"
+            placeholder="Date"
+            
+          />
+          <button
+            type="button"
+            onClick={createNewLecture}
+            className="submit-btn"
+          >
+            Create
+          </button>
+          <button
+            type="button"
+            onClick={closeModal}
+            className="close-btn"
+          >
+            <span className="close-btn-text">X</span>
+          </button>
+        </form>
+      </Modal>
       <div>
         <div className="lectures-div">
           {currentClassroom ? (
             <ul className="lectures-list">
-              {lectures.map((lecture, index) => (
+              {currentClassroom.lectures.map((lecture, index) => (
                 <LectureItem lecture={lecture} key={index} />
               ))}
             </ul>

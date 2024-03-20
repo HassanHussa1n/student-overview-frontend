@@ -165,7 +165,40 @@ ul {
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
+.create-btn {
+  background-color: #0e60dc;
+  border: none;
+  color: white;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  font-family: "Righteous";
+  font-size: 12px;
+  margin: 30px 10px  ;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
 .close-btn {
+  background-color: rgb(204, 28, 28);
+  border: none;
+  color: white;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: "Righteous";
+  font-size: 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+
+.delete-btn {
   background-color: rgb(204, 28, 28);
   border: none;
   color: white;
@@ -206,9 +239,10 @@ ul {
 }
 
 .add-note-btn:hover,
-.delete-note-btn:hover,
-.log-out-btn,
-.view-btn {
+.delete-btn:hover,
+.log-out-btn:hover,
+.view-btn:hover,
+.submit-btn:hover {
   transform: scale(1.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
