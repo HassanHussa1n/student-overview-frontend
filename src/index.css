@@ -165,6 +165,31 @@ ul {
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
+
+.lectures-div {
+  margin-left: 20px;
+  border: solid;
+  padding: 5px;
+  border-radius: 15px;
+  background-color: lightgray;
+}
+
+.students-list {
+  margin-left: 20px;
+  border: solid;
+  padding: 5px;
+  border-radius: 15px;
+  background-color: lightgray;
+}
+
+.teachers-list {
+  margin-left: 20px;
+  border: solid;
+  padding: 5px;
+  border-radius: 15px;
+  background-color: lightgray;
+}
+
 .create-btn {
   background-color: #0e60dc;
   border: none;
@@ -268,10 +293,11 @@ ul {
 }
 
 .lecture {
+  width: 500px;
   background-color: #f9f9f9;
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 10px;
+  padding: 15px;
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
@@ -279,10 +305,11 @@ ul {
 }
 
 .teacher {
+  width:500px;
   background-color: #f9f9f9;
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 10px;
+  padding: 15px;
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
@@ -290,10 +317,11 @@ ul {
 }
 
 .student {
+  width: 500px;
   background-color: #f9f9f9;
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 10px;
+  padding: 15px;
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;

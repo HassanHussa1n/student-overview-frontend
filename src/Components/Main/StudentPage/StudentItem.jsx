@@ -27,6 +27,7 @@ export default function StudentItem(props) {
           student={props.student}
           closeModal={closeModal}
           setUpdateGrade={setUpdateGrade}
+          currentClassroom={props.currentClassroom}
         />
 
         <button className="view-btn" onClick={openModal}>

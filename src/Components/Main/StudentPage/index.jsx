@@ -8,15 +8,17 @@ export default function StudentPage() {
   return (
     <>
       <h1>Students</h1>
+      <div className="students-list">
       {currentClassroom ? (
         <ul className="student-list">
           {currentClassroom.students.map((student, index) => {
-            return <StudentItem student={student} key={index} />;
+            return <StudentItem student={student} key={index} currentClassroom={currentClassroom}/>;
           })}
         </ul>
       ) : (
         <p>Choose a classroom!</p>
       )}
+      </div>
     </>
   );
 }
