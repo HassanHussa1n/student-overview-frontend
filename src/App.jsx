@@ -8,30 +8,6 @@ const MyContext = createContext();
 //Seperate context for login
 const LoginContext = createContext();
 
-const DUMMY_CLASSROOMS = [
-  {
-    id: 1,
-    teacherId: 4,
-    name: "PYPY3",
-    startDate: "2024.12.03",
-    endDate: "2025.11.04",
-  },
-  {
-    id: 2,
-    teacherId: 4,
-    name: "NETNET2",
-    startDate: "2022.12.03",
-    endDate: "2023.11.04",
-  },
-  {
-    id: 3,
-    teacherId: 3,
-    name: "JAJA1",
-    startDate: "2022.10.03",
-    endDate: "2023.10.04",
-  },
-];
-
 function App() {
   const [teachers, setTeachers] = useState([]);
   const [students, setStudents] = useState([]);
@@ -81,7 +57,7 @@ function App() {
       .then((item) => setTeachers(item));
   }, []);
 
-  console.log("Teachers: ", teachers)
+  console.log("Teachers: ", teachers);
   //UseEffect for students
   useEffect(() => {
     fetch(`http://localhost:4000/student`)
@@ -91,8 +67,9 @@ function App() {
 
   //UseEffect for classrooms
   useEffect(() => {
-    setClassrooms(DUMMY_CLASSROOMS);
+    setClassrooms(item);
   }, []);
+  console.log("Classrooms", classrooms);
 
   console.log(localStorage.getItem("loggedInId"));
   return (
