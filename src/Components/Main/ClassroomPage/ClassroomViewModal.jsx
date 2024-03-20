@@ -27,7 +27,7 @@ export default function ClassroomViewModal({ isOpen, onClose, closeModal }) {
       )}
 
       <button onClick={closeModal} className="close-btn">
-        X
+        <span className="close-btn-text">X</span>
       </button>
     </Modal>
   );

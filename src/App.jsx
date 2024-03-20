@@ -58,32 +58,12 @@ function App() {
   }, []);
 
   console.log("Teachers: ", teachers);
-<<<<<<< HEAD
-  //UseEffect for students
-  useEffect(() => {
-    fetch(`http://localhost:4000/student`)
-      .then((response) => response.json())
-      .then((item) => setStudents(item));
-  }, []);
-
-  //UseEffect for classrooms
-  useEffect(() => {
-    fetch(`http://localhost:4000/lecture`)
-      .then((response) => response.json())
-      .then(setLectures);
-  }, []);
-
-  //UseEffect for classrooms
-  useEffect(() => {
-    setClassrooms(DUMMY_CLASSROOMS);
-=======
 
   //UseEffect for classrooms
   useEffect(() => {
     fetch(`http://localhost:4000/classroom`)
       .then((response) => response.json())
       .then((item) => setClassrooms(item));
->>>>>>> ba33108a9a1ac927087b19e96c6f54c122d43b21
   }, []);
   console.log("classrooms: ", classrooms);
 
@@ -93,11 +73,6 @@ function App() {
         <MyContext.Provider
           value={{
             teachers,
-<<<<<<< HEAD
-            students,
-            lectures,
-=======
->>>>>>> ba33108a9a1ac927087b19e96c6f54c122d43b21
             currentUser,
             setCurrentUser,
             currentClassroom,

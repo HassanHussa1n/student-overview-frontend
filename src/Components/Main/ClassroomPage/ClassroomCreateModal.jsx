@@ -6,7 +6,6 @@ export default function ClassroomCreateModal({
   createOnClose,
   createCloseModal,
 }) {
-  const [formData, setFormData] = useState({});
   const [newClassroom, setNewClassroom] = useState({
     teacherId: "",
     name: "",
@@ -14,13 +13,54 @@ export default function ClassroomCreateModal({
     endDate: "",
   });
   const { currentUser } = useContext(MyContext);
+
   const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (e.target.name === "name") {
+      setNewClassroom({
+        ...newClassroom,
+        name: e.target.value,
+      });
+    }
+    if (e.target.name === "startDate") {
+      setNewClassroom({
+        ...newClassroom,
+        startDate: e.target.value,
+      });
+    }
+    if (e.target.name === "endDate") {
+      setNewClassroom({
+        ...newClassroom,
+        endDate: e.target.value,
+        teacher: currentUser.id,
+      });
+    }
   };
 
   const handleSubmit = () => {
-    console.log("Classroom added", formData);
-    newClassroom.teacherId = currentUser.id;
+    //Check if data is filled
+    if (
+      newClassroom.name.length > 0 &&
+      newClassroom.startDate.length > 0 &&
+      newClassroom.endDate.length > 0
+    ) {
+      fetch(`http://localhost:4000/classroom`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newClassroom),
+      });
+
+      //Reset the fields
+      setNewClassroom({
+        ...newClassroom,
+        name: "",
+        startDate: "",
+        endDate: "",
+        teacherId: "",
+      });
+      console.log("Classroom added", newClassroom);
+    }
 
     createCloseModal();
   };
@@ -29,21 +69,39 @@ export default function ClassroomCreateModal({
       isOpen={createIsOpen}
       onRequestClose={createOnClose}
       appElement={document.getElementById("root")}
+      className="custom-modal"
     >
+      <h2>Create classroom</h2>
       <form>
         <input
           type="text"
           name="name"
           value={newClassroom.name}
+          placeholder="Name"
           onChange={handleInputChange}
         />
+        <input
+          type="text"
+          name="startDate"
+          value={newClassroom.startDate}
+          placeholder="Start Date"
+          onChange={handleInputChange}
+        />
+        <input
+          type="text"
+          name="endDate"
+          value={newClassroom.endDate}
+          placeholder="End Date"
+          onChange={handleInputChange}
+        />
+
         <button type="button" onClick={handleSubmit} className="submit-btn">
           Submit
         </button>
       </form>
 
       <button onClick={createCloseModal} className="close-btn">
-        X
+        <span className="close-btn-text">X</span>
       </button>
     </Modal>
   );
