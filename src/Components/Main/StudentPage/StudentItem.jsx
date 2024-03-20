@@ -14,7 +14,7 @@ export default function StudentItem(props) {
   return (
     <li>
       <div className="student">
-        <p>{props.student.lastName}</p>
+        <p>{props.student.firstName} {props.student.lastName}</p>
 
         <StudentViewModal
           isOpen={modalOpen}

@@ -353,7 +353,8 @@ ul {
   overflow-y: auto;
 }
 
-.custom-modal input[type="text"] {
+.custom-modal input[type="text"],
+input[type="email"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -362,6 +363,46 @@ ul {
   box-sizing: border-box;
   font-size: 16px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.p-email {
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.p-emailValue {
+  
+  border-bottom: 0.5px solid;
+}
+
+.p-phone {
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.p-phoneValue {
+  
+  border-bottom: 0.5px solid;
+}
+
+.p-classroom {
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.custom-modal ul {
+  margin-bottom: 15px;
+}
+
+.custom-modal li {
+  list-style-type: none;
+  margin-bottom: 10px;
+  background-color: #0e60dc;
+  color: white;
+  border: solid black;
+  border-radius: 7px;
+  padding: 5px;
+  
 }
 
 .custom-modal textarea {

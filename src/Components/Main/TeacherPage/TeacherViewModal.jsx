@@ -15,13 +15,17 @@ export default function TeacherViewModal({
       <h2>
         {teacher.firstName} {teacher.lastName}
       </h2>
-      <p>Email: {teacher.email}</p>
-      <p>Phone Number: {teacher.phone}</p>
+      <p className="p-email">Email:</p> 
+      <p className="p-emailValue">{teacher.email}</p>
+
+      <p className="p-phone">Phone Number:</p>
+      <p className="p-phoneValue">{teacher.phone}</p>
+      <p className="p-classroom">Classrooms:</p>
       <ul>
+        
       {teacher.classrooms.map((classroom, index) => {
             return (
               <>
-              <p>Classrooms</p>
             
               <li
                 key={index}

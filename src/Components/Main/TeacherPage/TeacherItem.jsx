@@ -14,7 +14,9 @@ export default function TeacherItem(props) {
   return (
     <li>
       <div className="teacher">
-      <p>{props.teacher.firstName}</p>
+      <p>{props.teacher.firstName} {props.teacher.lastName}</p>
+      
+
       <button onClick={openModal}className="view-btn">View</button>
       </div>
       <TeacherViewModal
