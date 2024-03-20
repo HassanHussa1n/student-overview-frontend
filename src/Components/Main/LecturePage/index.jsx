@@ -55,7 +55,7 @@ export default function LecturePage() {
     }
   };
 
-  const createNewLecture = () => {};
+  
 
   return (
     <>

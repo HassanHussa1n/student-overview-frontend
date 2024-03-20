@@ -1,17 +1,56 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { MyContext } from "../../../App";
 import Modal from "react-modal";
 export default function LectureItem(props) {
+  const { currentClassroom } = useContext(MyContext);
   const { lecture } = props;
   const [modalOpen, setModalOpen] = useState(false);
-  const [formData, setFormData] = useState({});
+  const [editedLecture, setEditedLecture] = useState({
+    classroomId: currentClassroom.id,
+    name: lecture.name,
+    description: lecture.description,
+    startDate: lecture.startDate,
+    endDate: lecture.endDate,
+    exercises: lecture.exercises
+  });
 
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleInputChange = (e, index) => {
+    const { name, value } = e.target;
+    if (name.startsWith("exerciseName")) {
+      const updatedExercises = [...editedLecture.exercises];
+      updatedExercises[index].name = value;
+      setEditedLecture({ ...editedLecture, exercises: updatedExercises });
+    } else if (name.startsWith("exerciseLink")) {
+      const updatedExercises = [...editedLecture.exercises];
+      updatedExercises[index].linkToRepo = value;
+      setEditedLecture({ ...editedLecture, exercises: updatedExercises });
+    } else {
+      setEditedLecture({ ...editedLecture, [name]: value });
+    }
   };
 
-  const handleSubmit = () => {
-    console.log("Lecture has been edited", formData);
-    closeModal();
+  console.log(lecture)
+  const handleSubmit = async () => {
+    console.log(JSON.stringify(editedLecture))
+    
+    try {
+      const response = await fetch(`http://localhost:4000/lecture/${lecture.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(editedLecture),
+      });
+
+      if (response.ok) {
+        console.log("Lecture updated successfully: ", lecture);
+        closeModal();
+      } else {
+        console.error("Failed to update lecture", response);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   const openModal = () => {
@@ -22,7 +61,22 @@ export default function LectureItem(props) {
     setModalOpen(false);
   };
 
-  const deleteLecture = () => {};
+  const deleteLecture = async () => {
+    try {
+      const response = await fetch(`http://localhost:4000/lecture/${lecture.id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        console.log("Lecture deleted successfully, at: ", `http://localhost:4000/lecture/${lecture.id}`);
+        closeModal();
+      } else {
+        console.error("Failed to delete lecture, at: ", `http://localhost:4000/lecture/${lecture.id}`);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   return (
     <li>
@@ -43,62 +97,62 @@ export default function LectureItem(props) {
           <input
             type="text"
             name="name"
-            value={lecture.name}
+            value={editedLecture.name}
             placeholder="Name"
             onChange={handleInputChange}
           />
           <textarea
             type="textarea"
             name="description"
-            value={lecture.description}
+            value={editedLecture.description}
             placeholder="Description"
             onChange={handleInputChange}
           />
           <input
             type="text"
             name="startDate"
-            value={lecture.startDate}
+            value={editedLecture.startDate}
             placeholder="Start Date"
             onChange={handleInputChange}
           />
           <input
             type="text"
             name="endDate"
-            value={lecture.endDate}
+            value={editedLecture.endDate}
             placeholder="End Date"
             onChange={handleInputChange}
           />
-          {lecture.exercises.map((exercise, index) => {
-            return (
-              <>
-              <p>Exercises</p>
-              <input
-                key={index}
-                type="text"
-                name={`exercise${index}`}
-                value={exercise.name}
-                placeholder="Name"
-                onChange={handleInputChange}
-              />
-              <input
-                key={index}
-                type="text"
-                name={`exercise${index}`}
-                value={exercise.linkToRepo}
-                placeholder="Name"
-                onChange={handleInputChange}
-              />
-              </>
-            );
-          })}
+          {editedLecture.exercises.map((exercise, index) => {
+  return (
+    <div key={index}>
+      <p>Exercise {index + 1}</p>
+      <input
+        type="text"
+        name={`exerciseName${index}`}
+        value={exercise.name}
+        placeholder="Name"
+        onChange={(e) => handleInputChange(e, index)}
+      />
+      <input
+        type="text"
+        name={`exerciseLink${index}`}
+        value={exercise.linkToRepo}
+        placeholder="Link to Repo"
+        onChange={(e) => handleInputChange(e, index)}
+      />
+    </div>
+  );
+})}
           <button type="button" onClick={handleSubmit} className="submit-btn">
           Confirm Edit
           </button>
           <button type="button"
-          className="delete-btn" onClick={deleteLecture()}>Delete Lecture</button>
+          className="delete-btn" onClick={deleteLecture}>Delete Lecture</button>
+
+
           <button
             type="button"
-            onClick={closeModal || deleteLecture}
+            onClick={closeModal}
             className="close-btn"
           >
             <span className="close-btn-text">X</span>
