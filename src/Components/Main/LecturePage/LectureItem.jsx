@@ -1,10 +1,12 @@
 import React, { useState, useContext } from "react";
 import { MyContext } from "../../../App";
 import Modal from "react-modal";
+import NewExerciseModal from "./NewExerciseModal";
 export default function LectureItem(props) {
   const { currentClassroom } = useContext(MyContext);
   const { lecture } = props;
   const [modalOpen, setModalOpen] = useState(false);
+  const [createModalOpen, setCreateModalOpen] = useState(false);
   const [editedLecture, setEditedLecture] = useState({
     classroomId: currentClassroom.id,
     name: lecture.name,
@@ -61,6 +63,13 @@ export default function LectureItem(props) {
     setModalOpen(false);
   };
 
+  const createOpenModal = () => {
+    setCreateModalOpen(true);
+  };
+  const createCloseModal = () => {
+    setCreateModalOpen(false);
+  };
+
   const deleteLecture = async () => {
     try {
       const response = await fetch(`http://localhost:4000/lecture/${lecture.id}`, {
@@ -85,6 +94,15 @@ export default function LectureItem(props) {
         <button onClick={openModal} className="view-btn">
           View
         </button>
+        <button onClick={createOpenModal} className="view-btn">
+          Add exercise
+        </button>
+        <NewExerciseModal
+          createIsOpen={createModalOpen}
+          createOnClose={() => setCreateModalOpen(false)}
+          createCloseModal={createCloseModal}
+          lecture={lecture}
+        />
       </div>
       <Modal
         isOpen={modalOpen}
@@ -143,12 +161,13 @@ export default function LectureItem(props) {
     </div>
   );
 })}
+
           <button type="button" onClick={handleSubmit} className="submit-btn">
-          Confirm Edit
+            Confirm Edit
           </button>
+          
           <button type="button"
           className="delete-btn" onClick={deleteLecture}>Delete Lecture</button>
-
 
           <button
             type="button"

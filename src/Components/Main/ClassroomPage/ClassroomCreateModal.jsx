@@ -6,13 +6,13 @@ export default function ClassroomCreateModal({
   createOnClose,
   createCloseModal,
 }) {
-  const [newClassroom, setNewClassroom] = useState({
-    teacherId: "",
-    name: "",
-    startDate: "",
-    endDate: "",
-  });
-  const { currentUser } = useContext(MyContext);
+  const {
+    currentUser,
+    newClassroom,
+    setNewClassroom,
+    currentClassroom,
+    setCurrentClassroom,
+  } = useContext(MyContext);
 
   const handleInputChange = (e) => {
     if (e.target.name === "name") {
@@ -31,7 +31,7 @@ export default function ClassroomCreateModal({
       setNewClassroom({
         ...newClassroom,
         endDate: e.target.value,
-        teacher: currentUser.id,
+        teacherId: currentUser.id,
       });
     }
   };
@@ -59,6 +59,7 @@ export default function ClassroomCreateModal({
         endDate: "",
         teacherId: "",
       });
+      setCurrentClassroom(newClassroom);
       console.log("Classroom added", newClassroom);
     }
 
