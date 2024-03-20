@@ -74,7 +74,7 @@ export default function LecturePage() {
               ))}
             </ul>
           ) : (
-            <p>Empty classroom</p>
+            <p>Choose a classroom!</p>
           )}
         </div>
       </div>
