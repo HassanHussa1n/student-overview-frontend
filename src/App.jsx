@@ -8,33 +8,8 @@ const MyContext = createContext();
 //Seperate context for login
 const LoginContext = createContext();
 
-const DUMMY_CLASSROOMS = [
-  {
-    id: 1,
-    teacherId: 4,
-    name: "PYPY3",
-    startDate: "2024.12.03",
-    endDate: "2025.11.04",
-  },
-  {
-    id: 2,
-    teacherId: 4,
-    name: "NETNET2",
-    startDate: "2022.12.03",
-    endDate: "2023.11.04",
-  },
-  {
-    id: 3,
-    teacherId: 3,
-    name: "JAJA1",
-    startDate: "2022.10.03",
-    endDate: "2023.10.04",
-  },
-];
-
 function App() {
   const [teachers, setTeachers] = useState([]);
-  const [students, setStudents] = useState([]);
   const [classrooms, setClassrooms] = useState([]);
   //Set currentuser = null if localStorage is not saved(logged out)
   const [currentUser, setCurrentUser] = useState(null);
@@ -62,8 +37,8 @@ function App() {
       //Get the value of current classroom
       const classroomId = localStorage.getItem(keyname);
       console.log("classid:", classroomId);
-      if (classroomId && classrooms) {
-        const foundClassroom = classrooms.find(
+      if (classroomId && currentUser.classrooms) {
+        const foundClassroom = currentUser.classrooms.find(
           (item) => Number(item.id) === Number(classroomId)
         );
         setCurrentClassroom(foundClassroom);
@@ -72,7 +47,7 @@ function App() {
         setCurrentClassroom(null);
       }
     }
-  }, [classrooms, currentUser]);
+  }, [currentUser]);
 
   //UseEffect for teachers
   useEffect(() => {
@@ -81,27 +56,22 @@ function App() {
       .then((item) => setTeachers(item));
   }, []);
 
-  console.log("Teachers: ", teachers)
-  //UseEffect for students
-  useEffect(() => {
-    fetch(`http://localhost:4000/student`)
-      .then((response) => response.json())
-      .then((item) => setStudents(item));
-  }, []);
+  console.log("Teachers: ", teachers);
 
   //UseEffect for classrooms
   useEffect(() => {
-    setClassrooms(DUMMY_CLASSROOMS);
+    fetch(`http://localhost:4000/classroom`)
+      .then((response) => response.json())
+      .then((item) => setClassrooms(item));
   }, []);
+  console.log("classrooms: ", classrooms);
 
-  console.log(localStorage.getItem("loggedInId"));
   return (
     <div className="container">
       {currentUser ? (
         <MyContext.Provider
           value={{
             teachers,
-            students,
             currentUser,
             setCurrentUser,
             currentClassroom,

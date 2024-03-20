@@ -1,24 +1,9 @@
 import Modal from "react-modal";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { MyContext } from "../../../App.jsx";
 import ClassroomItem from "./ClassroomItem.jsx";
 export default function ClassroomViewModal({ isOpen, onClose, closeModal }) {
-  const { classrooms, currentUser } = useContext(MyContext);
-  const [userClassrooms, setUserClassrooms] = useState([]);
-
-  useEffect(() => {
-    //New list to present the user
-    const newList = [];
-    for (let i = 0; i < classrooms.length; i++) {
-      if (classrooms[i].teacherId === currentUser.id) {
-        //Object in the list for presentation
-        const classroom = classrooms[i];
-        newList.push(classroom);
-      }
-    }
-    setUserClassrooms(newList);
-    console.log(userClassrooms);
-  }, [classrooms, currentUser]);
+  const { currentUser } = useContext(MyContext);
 
   return (
     <Modal
@@ -26,11 +11,11 @@ export default function ClassroomViewModal({ isOpen, onClose, closeModal }) {
       onRequestClose={onClose}
       appElement={document.getElementById("root")}
     >
-      {userClassrooms.length !== 0 ? (
+      {currentUser.classrooms ? (
         <div>
           <h3>Classrooms</h3>
           <ul>
-            {userClassrooms.map((classroomItem, index) => {
+            {currentUser.classrooms.map((classroomItem, index) => {
               return (
                 <ClassroomItem classroomItem={classroomItem} key={index} />
               );
