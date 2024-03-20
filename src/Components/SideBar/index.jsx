@@ -22,28 +22,28 @@ export default function SideBar() {
           <img src={Logo} alt="Logo" className="logo" />
         </li>
         <li>
-          <Link to={`/home/${context.currentUser.id}`}>
+          <Link to={`/home/${currentUser.id}`}>
             <p>{currentUser.firstName}</p>
           </Link>
         </li>
         <li>
-          <Link to={`/lectures/${context.currentUser.id}`}>
+          <Link to={`/lectures/${currentUser.id}`}>
             <p>Lectures</p>
           </Link>
         </li>
         <li>
-          <Link to={`/students/${context.currentUser.id}`}>
+          <Link to={`/students/${currentUser.id}`}>
             <p>Students</p>
           </Link>
         </li>
         <li>
-          <Link to={`/teachers/${context.currentUser.id}`}>
+          <Link to={`/teachers/${currentUser.id}`}>
             <p>Teachers</p>
           </Link>
         </li>
         <li>
-          <Link to={`/classroom/${context.currentUser.id}`}>
-            {currentClassroom !== null ? (
+          <Link to={`/classroom/${currentUser.id}`}>
+            {currentClassroom ? (
               <p>{currentClassroom.name}</p>
             ) : (
               <p>Classroom</p>

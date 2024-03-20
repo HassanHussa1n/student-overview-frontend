@@ -8,34 +8,9 @@ const MyContext = createContext();
 //Seperate context for login
 const LoginContext = createContext();
 
-const DUMMY_CLASSROOMS = [
-  {
-    id: 1,
-    teacherId: 4,
-    name: "PYPY3",
-    startDate: "2024.12.03",
-    endDate: "2025.11.04",
-  },
-  {
-    id: 2,
-    teacherId: 4,
-    name: "NETNET2",
-    startDate: "2022.12.03",
-    endDate: "2023.11.04",
-  },
-  {
-    id: 3,
-    teacherId: 3,
-    name: "JAJA1",
-    startDate: "2022.10.03",
-    endDate: "2023.10.04",
-  },
-];
-
 function App() {
   const [lectures, setLectures] = useState([]);
   const [teachers, setTeachers] = useState([]);
-  const [students, setStudents] = useState([]);
   const [classrooms, setClassrooms] = useState([]);
   //Set currentuser = null if localStorage is not saved(logged out)
   const [currentUser, setCurrentUser] = useState(null);
@@ -63,8 +38,8 @@ function App() {
       //Get the value of current classroom
       const classroomId = localStorage.getItem(keyname);
       console.log("classid:", classroomId);
-      if (classroomId && classrooms) {
-        const foundClassroom = classrooms.find(
+      if (classroomId && currentUser.classrooms) {
+        const foundClassroom = currentUser.classrooms.find(
           (item) => Number(item.id) === Number(classroomId)
         );
         setCurrentClassroom(foundClassroom);
@@ -73,7 +48,7 @@ function App() {
         setCurrentClassroom(null);
       }
     }
-  }, [classrooms, currentUser]);
+  }, [currentUser]);
 
   //UseEffect for teachers
   useEffect(() => {
@@ -83,6 +58,7 @@ function App() {
   }, []);
 
   console.log("Teachers: ", teachers);
+<<<<<<< HEAD
   //UseEffect for students
   useEffect(() => {
     fetch(`http://localhost:4000/student`)
@@ -100,17 +76,28 @@ function App() {
   //UseEffect for classrooms
   useEffect(() => {
     setClassrooms(DUMMY_CLASSROOMS);
-  }, []);
+=======
 
-  console.log(localStorage.getItem("loggedInId"));
+  //UseEffect for classrooms
+  useEffect(() => {
+    fetch(`http://localhost:4000/classroom`)
+      .then((response) => response.json())
+      .then((item) => setClassrooms(item));
+>>>>>>> ba33108a9a1ac927087b19e96c6f54c122d43b21
+  }, []);
+  console.log("classrooms: ", classrooms);
+
   return (
     <div className="container">
       {currentUser ? (
         <MyContext.Provider
           value={{
             teachers,
+<<<<<<< HEAD
             students,
             lectures,
+=======
+>>>>>>> ba33108a9a1ac927087b19e96c6f54c122d43b21
             currentUser,
             setCurrentUser,
             currentClassroom,
