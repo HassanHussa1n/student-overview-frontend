@@ -11,10 +11,18 @@ const LoginContext = createContext();
 function App() {
   const [teachers, setTeachers] = useState([]);
   const [classrooms, setClassrooms] = useState([]);
+  const [theUsersClassrooms, setTheUserClassrooms] = useState([]);
   //Set currentuser = null if localStorage is not saved(logged out)
   const [currentUser, setCurrentUser] = useState(null);
   //Set current classroom with simular logic as currentuser
   const [currentClassroom, setCurrentClassroom] = useState(null);
+  //Usestate for creating new classroom
+  const [newClassroom, setNewClassroom] = useState({
+    teacherId: "",
+    name: "",
+    startDate: "",
+    endDate: "",
+  });
 
   //Set the loggedin user the the last logged in
   useEffect(() => {
@@ -25,7 +33,6 @@ function App() {
         (userItem) => Number(userItem.id) === Number(loggedInId)
       );
       setCurrentUser(foundUser);
-      console.log(foundUser);
     }
   }, [teachers]);
 
@@ -42,7 +49,6 @@ function App() {
           (item) => Number(item.id) === Number(classroomId)
         );
         setCurrentClassroom(foundClassroom);
-        console.log("object classroom:", currentClassroom);
       } else {
         setCurrentClassroom(null);
       }
@@ -56,15 +62,19 @@ function App() {
       .then((item) => setTeachers(item));
   }, []);
 
-  console.log("Teachers: ", teachers);
-
   //UseEffect for classrooms
   useEffect(() => {
     fetch(`http://localhost:4000/classroom`)
       .then((response) => response.json())
       .then((item) => setClassrooms(item));
   }, []);
-  console.log("classrooms: ", classrooms);
+
+  //UseEffect for the currentusers' classrooms
+  useEffect(() => {
+    if (currentUser) {
+      setTheUserClassrooms(currentUser.classrooms);
+    }
+  }, [newClassroom, currentUser]);
 
   return (
     <div className="container">
@@ -77,6 +87,9 @@ function App() {
             currentClassroom,
             setCurrentClassroom,
             classrooms,
+            newClassroom,
+            setNewClassroom,
+            theUsersClassrooms,
           }}
         >
           <Main />

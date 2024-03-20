@@ -1,120 +1,45 @@
 import Modal from "react-modal";
 import { useState, useEffect } from "react";
 import GradeItem from "./GradeItem.jsx";
-const DUMMY_EXERCISES = [
-  {
-    id: 1,
-    lectureId: 1,
-    studentId: 4,
-    name: "Angular basics",
-    description: "A cool lecture about a cool language",
-    linkToRepo: "http/angular.github.com",
-    lastUpdated: "04.03.2024",
-  },
-  {
-    id: 2,
-    lectureId: 1,
-    studentId: 5,
-    name: "REACT basics",
-    description: "A cool lecture about a cool language",
-    linkToRepo: "http/angular.github.com",
-    lastUpdated: "04.03.2024",
-  },
-  {
-    id: 3,
-    lectureId: 1,
-    studentId: 5,
-    name: "JAVA basics",
-    description: "A cool lecture about a cool language",
-    linkToRepo: "http/angular.github.com",
-    lastUpdated: "04.03.2024",
-  },
-  {
-    id: 4,
-    lectureId: 1,
-    studentId: 5,
-    name: ".Net basics",
-    description: "A cool lecture about a cool language",
-    linkToRepo: "http/angular.github.com",
-    lastUpdated: "04.03.2024",
-  },
-  {
-    id: 5,
-    lectureId: 1,
-    studentId: 5,
-    name: "Python basics",
-    description: "A cool lecture about a cool language",
-    linkToRepo: "http/angular.github.com",
-    lastUpdated: "04.03.2024",
-  },
-  {
-    id: 6,
-    lectureId: 1,
-    studentId: 5,
-    name: "Database basics",
-    description: "A cool lecture about a cool language",
-    linkToRepo: "http/angular.github.com",
-    lastUpdated: "04.03.2024",
-  },
-];
-
-const DUMMY_GRADES = [
-  { id: 1, exerciseId: 2, studentId: 4, grade: 2, lastUpdated: "04.03.2024" },
-  { id: 2, exerciseId: 1, studentId: 4, grade: 2, lastUpdated: "04.03.2024" },
-  { id: 3, exerciseId: 2, studentId: 3, grade: 2, lastUpdated: "04.03.2024" },
-  { id: 4, exerciseId: 3, studentId: 3, grade: 2, lastUpdated: "04.03.2024" },
-  { id: 5, exerciseId: 4, studentId: 3, grade: 2, lastUpdated: "04.03.2024" },
-  { id: 6, exerciseId: 6, studentId: 3, grade: 2, lastUpdated: "04.03.2024" },
-  { id: 7, exerciseId: 5, studentId: 3, grade: 2, lastUpdated: "04.03.2024" },
-];
 
 export default function StudentViewModal({
   isOpen,
   onClose,
   closeModal,
   student,
+  setUpdateGrade,
 }) {
-  //const { exercises,grades } = useContext(MyContext);
   //Retrieve the grades for the student
-  const [exercises, setExercises] = useState([]);
   const [grades, setGrades] = useState([]);
   const [gradeList, setGradeList] = useState([]);
   const [editedStudent, setEditedStudent] = useState([]);
-  //UseEffect for exercises
+
   useEffect(() => {
-    setExercises(DUMMY_EXERCISES);
-  }, []);
-  useEffect(() => {
-    setGrades(DUMMY_GRADES);
+    setGrades(student.evaluations);
   }, []);
 
   useEffect(() => {
     //New list to present the user
     const newList = [];
     for (let i = 0; i < grades.length; i++) {
-      const exercise = exercises.find(
-        (item) => Number(item.id) === Number(grades[i].exerciseId)
-      );
+      const exercise = grades[i].exercise;
       if (exercise) {
-        if (grades[i].studentId === student.id) {
-          //Object in the list for presentation
-          const gradeObject = { name: exercise.name, grade: grades[i].grade };
-          newList.push(gradeObject);
-        }
+        //Object in the list for presentation
+        const listObject = { ...grades[i], name: exercise.name };
+        newList.push(listObject);
       }
     }
     setGradeList(newList);
-  }, [exercises]);
-  console.log(gradeList);
+  }, [grades]);
 
   const handleInputChange = (e) => {
-    const {name, value} = e.target;
-    setEditedStudent({...editedStudent, [name]: value});
+    const { name, value } = e.target;
+    setEditedStudent({ ...editedStudent, [name]: value });
   };
 
   const saveChanges = () => {
-     console.log("Edited student: ", editedStudent)
-  }
+    console.log("Edited student: ", editedStudent);
+  };
 
   return (
     <Modal
@@ -130,7 +55,13 @@ export default function StudentViewModal({
             <h4>Exercises</h4>
             <ul>
               {gradeList.map((gradeItem, index) => {
-                return <GradeItem gradeItem={gradeItem} key={index} />;
+                return (
+                  <GradeItem
+                    setUpdateGrade={setUpdateGrade}
+                    gradeItem={gradeItem}
+                    key={index}
+                  />
+                );
               })}
             </ul>
           </div>
@@ -162,9 +93,11 @@ export default function StudentViewModal({
         onChange={handleInputChange}
       />
       <br />
-      <button onClick={saveChanges} className="edit-student-btn">Save Changes</button>
+      <button onClick={saveChanges} className="edit-student-btn">
+        Save Changes
+      </button>
       <button onClick={closeModal} className="close-btn">
-      <span className="close-btn-text">X</span>
+        <span className="close-btn-text">X</span>
       </button>
     </Modal>
   );

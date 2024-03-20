@@ -6,7 +6,7 @@ export default function ClassroomItem(props) {
   const changeClassroom = () => {
     const keyname = "user" + currentUser.id;
     localStorage.setItem(keyname, props.classroomItem.id);
-    console.log("classroomid:!!:", localStorage.getItem(keyname));
+    
     const classroomId = localStorage.getItem(keyname);
     const foundClassroom = currentUser.classrooms.find(
       (item) => Number(item.id) === Number(classroomId)

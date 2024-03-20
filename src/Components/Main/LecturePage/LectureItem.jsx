@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+import NewExerciseModal from "./NewExerciseModal";
 export default function LectureItem(props) {
   const { lecture } = props;
   const [modalOpen, setModalOpen] = useState(false);
+  const [createModalOpen, setCreateModalOpen] = useState(false);
   const [formData, setFormData] = useState({});
 
   const handleInputChange = (e) => {
@@ -22,6 +24,12 @@ export default function LectureItem(props) {
     setModalOpen(false);
   };
 
+  const createOpenModal = () => {
+    setCreateModalOpen(true);
+  };
+  const createCloseModal = () => {
+    setCreateModalOpen(false);
+  };
   const deleteLecture = () => {};
 
   return (
@@ -31,6 +39,15 @@ export default function LectureItem(props) {
         <button onClick={openModal} className="view-btn">
           View
         </button>
+        <button onClick={createOpenModal} className="view-btn">
+          Add exercise
+        </button>
+        <NewExerciseModal
+          createIsOpen={createModalOpen}
+          createOnClose={() => setCreateModalOpen(false)}
+          createCloseModal={createCloseModal}
+          lecture={lecture}
+        />
       </div>
       <Modal
         isOpen={modalOpen}
@@ -64,31 +81,36 @@ export default function LectureItem(props) {
           {lecture.exercises.map((exercise, index) => {
             return (
               <>
-              <p>Exercises</p>
-              <input
-                key={index}
-                type="text"
-                name={`exercise${index}`}
-                value={exercise.name}
-                placeholder="Name"
-                onChange={handleInputChange}
-              />
-              <input
-                key={index}
-                type="text"
-                name={`exercise${index}`}
-                value={exercise.linkToRepo}
-                placeholder="Name"
-                onChange={handleInputChange}
-              />
+                <p>Exercises</p>
+                <input
+                  key={index}
+                  type="text"
+                  name={`exercise${index}`}
+                  value={exercise.name}
+                  placeholder="Name"
+                  onChange={handleInputChange}
+                />
+                <input
+                  key={index}
+                  type="text"
+                  name={`exercise${index}`}
+                  value={exercise.linkToRepo}
+                  placeholder="Name"
+                  onChange={handleInputChange}
+                />
               </>
             );
           })}
           <button type="button" onClick={handleSubmit} className="submit-btn">
-          Confirm Edit
+            Confirm Edit
           </button>
-          <button type="button"
-          className="delete-btn" onClick={deleteLecture()}>Delete Lecture</button>
+          <button
+            type="button"
+            className="delete-btn"
+            onClick={deleteLecture()}
+          >
+            Delete Lecture
+          </button>
           <button
             type="button"
             onClick={closeModal || deleteLecture}

@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { MyContext } from "../../../App.jsx";
 import ClassroomItem from "./ClassroomItem.jsx";
 export default function ClassroomViewModal({ isOpen, onClose, closeModal }) {
-  const { currentUser } = useContext(MyContext);
+  const { theUsersClassrooms } = useContext(MyContext);
 
   return (
     <Modal
@@ -11,11 +11,11 @@ export default function ClassroomViewModal({ isOpen, onClose, closeModal }) {
       onRequestClose={onClose}
       appElement={document.getElementById("root")}
     >
-      {currentUser.classrooms ? (
+      {theUsersClassrooms ? (
         <div>
           <h3>Classrooms</h3>
           <ul>
-            {currentUser.classrooms.map((classroomItem, index) => {
+            {theUsersClassrooms.map((classroomItem, index) => {
               return (
                 <ClassroomItem classroomItem={classroomItem} key={index} />
               );
