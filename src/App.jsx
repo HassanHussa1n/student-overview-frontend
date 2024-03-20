@@ -33,6 +33,7 @@ const DUMMY_CLASSROOMS = [
 ];
 
 function App() {
+  const [lectures, setLectures] = useState([]);
   const [teachers, setTeachers] = useState([]);
   const [students, setStudents] = useState([]);
   const [classrooms, setClassrooms] = useState([]);
@@ -81,12 +82,19 @@ function App() {
       .then((item) => setTeachers(item));
   }, []);
 
-  console.log("Teachers: ", teachers)
+  console.log("Teachers: ", teachers);
   //UseEffect for students
   useEffect(() => {
     fetch(`http://localhost:4000/student`)
       .then((response) => response.json())
       .then((item) => setStudents(item));
+  }, []);
+
+  //UseEffect for classrooms
+  useEffect(() => {
+    fetch(`http://localhost:4000/lecture`)
+      .then((response) => response.json())
+      .then(setLectures);
   }, []);
 
   //UseEffect for classrooms
@@ -102,6 +110,7 @@ function App() {
           value={{
             teachers,
             students,
+            lectures,
             currentUser,
             setCurrentUser,
             currentClassroom,
