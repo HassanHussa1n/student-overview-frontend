@@ -5,6 +5,12 @@ import { MyContext } from "../../../App";
 export default function LecturePage() {
   const { currentClassroom } = useContext(MyContext);
   const [modalOpen, setModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    startDate: "",
+    endDate: ""
+  });
 
   const openModal = () => {
     setModalOpen(true);
@@ -13,6 +19,42 @@ export default function LecturePage() {
   const closeModal = () => {
     setModalOpen(false);
   };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:4000/lecture", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          description: formData.description,
+          startDate: formData.startDate,
+          endDate: formData.endDate,
+          classroomId: currentClassroom.id
+        })
+      });
+
+      if (response.ok) {
+        
+        console.log("Lecture created successfully");
+        closeModal();
+      } else {
+        
+        console.error("Failed to create lecture");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   const createNewLecture = () => {};
 
   return (
@@ -30,34 +72,41 @@ export default function LecturePage() {
         className="custom-modal"
       >
         <h2>Create Lecture</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             name="name"
+            value={formData.name}
             placeholder="Name"
+            onChange={handleChange}
             
           />
           <textarea
             type="textarea"
             name="description"
+            value={formData.description}
             placeholder="Description"
+            onChange={handleChange}
             
           />
           <input
             type="text"
             name="startDate"
+            value={formData.startDate}
             placeholder="Start Date"
+            onChange={handleChange}
             
           />
           <input
             type="text"
             name="endDate"
+            value={formData.endDate}
             placeholder="End Date"
+            onChange={handleChange}
             
           />
           <button
-            type="button"
-            onClick={createNewLecture}
+            type="submit"
             className="submit-btn"
           >
             Create
