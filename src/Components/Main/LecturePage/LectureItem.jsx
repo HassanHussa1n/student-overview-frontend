@@ -49,16 +49,23 @@ export default function LectureItem(props) {
           />
           <textarea
             type="textarea"
-            name="content"
+            name="description"
             value={lecture.description}
-            placeholder="Content"
+            placeholder="Description"
             onChange={handleInputChange}
           />
           <input
             type="text"
-            name="date"
+            name="startDate"
             value={lecture.startDate}
-            placeholder="Date"
+            placeholder="Start Date"
+            onChange={handleInputChange}
+          />
+          <input
+            type="text"
+            name="endDate"
+            value={lecture.endDate}
+            placeholder="End Date"
             onChange={handleInputChange}
           />
           {lecture.exercises.map((exercise, index) => {

@@ -39,14 +39,20 @@ export default function LecturePage() {
           />
           <textarea
             type="textarea"
-            name="content"
-            placeholder="Content"
+            name="description"
+            placeholder="Description"
             
           />
           <input
             type="text"
-            name="date"
-            placeholder="Date"
+            name="startDate"
+            placeholder="Start Date"
+            
+          />
+          <input
+            type="text"
+            name="endDate"
+            placeholder="End Date"
             
           />
           <button
