@@ -7,11 +7,13 @@ export default function TeacherPage() {
   return (
     <>
     <h1>Teachers</h1>
+    <div className="teachers-list">
     <ul className="teacher-list">
       {teachers.map((teacher, index) => {
         return <TeacherItem teacher={teacher} key={index} />;
       })}
     </ul>
+    </div>
     </>
   );
 }

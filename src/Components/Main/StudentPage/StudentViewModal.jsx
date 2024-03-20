@@ -1,6 +1,7 @@
 import Modal from "react-modal";
 import { useState, useEffect } from "react";
 import GradeItem from "./GradeItem.jsx";
+import axios from "axios";
 
 export default function StudentViewModal({
   isOpen,
@@ -8,15 +9,16 @@ export default function StudentViewModal({
   closeModal,
   student,
   setUpdateGrade,
+  currentClassroom
 }) {
   //Retrieve the grades for the student
   const [grades, setGrades] = useState([]);
   const [gradeList, setGradeList] = useState([]);
-  const [editedStudent, setEditedStudent] = useState([]);
+  const [editedStudent, setEditedStudent] = useState({...student});
 
   useEffect(() => {
     setGrades(student.evaluations);
-  }, []);
+  }, [student.evaluations]);
 
   useEffect(() => {
     //New list to present the user
@@ -38,7 +40,19 @@ export default function StudentViewModal({
   };
 
   const saveChanges = () => {
-    console.log("Edited student: ", editedStudent);
+    
+    console.log(currentClassroom.id)
+    console.log(grades)
+    console.log(editedStudent)
+    axios.put(`http://localhost:4000/student/${student.id}`, {...editedStudent, classroomId: currentClassroom.id})
+    .then(response => {
+      console.log("Edited student: ", response.data);
+      setUpdateGrade(response.data)
+      closeModal()
+    })
+    .catch(error => {
+      console.error("Error updating student: ", error)
+    })
   };
 
   return (
