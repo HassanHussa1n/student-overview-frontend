@@ -3,13 +3,13 @@ import LectureItem from "./LectureItem";
 import Modal from "react-modal";
 import { MyContext } from "../../../App";
 export default function LecturePage() {
-  const { currentClassroom } = useContext(MyContext);
+  const { currentClassroom, theClassroomsLectures } = useContext(MyContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     startDate: "",
-    endDate: ""
+    endDate: "",
   });
 
   const openModal = () => {
@@ -24,38 +24,33 @@ export default function LecturePage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await fetch("http://localhost:4000/lecture", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name: formData.name,
           description: formData.description,
           startDate: formData.startDate,
           endDate: formData.endDate,
-          classroomId: currentClassroom.id
-        })
+          classroomId: currentClassroom.id,
+        }),
       });
 
       if (response.ok) {
-        
         console.log("Lecture created successfully");
         closeModal();
       } else {
-        
         console.error("Failed to create lecture");
       }
     } catch (error) {
       console.error("Error:", error);
     }
   };
-
-  
 
   return (
     <>
@@ -79,7 +74,6 @@ export default function LecturePage() {
             value={formData.name}
             placeholder="Name"
             onChange={handleChange}
-            
           />
           <textarea
             type="textarea"
@@ -87,7 +81,6 @@ export default function LecturePage() {
             value={formData.description}
             placeholder="Description"
             onChange={handleChange}
-            
           />
           <input
             type="text"
@@ -95,7 +88,6 @@ export default function LecturePage() {
             value={formData.startDate}
             placeholder="Start Date"
             onChange={handleChange}
-            
           />
           <input
             type="text"
@@ -103,19 +95,11 @@ export default function LecturePage() {
             value={formData.endDate}
             placeholder="End Date"
             onChange={handleChange}
-            
           />
-          <button
-            type="submit"
-            className="submit-btn"
-          >
+          <button type="submit" className="submit-btn">
             Create
           </button>
-          <button
-            type="button"
-            onClick={closeModal}
-            className="close-btn"
-          >
+          <button type="button" onClick={closeModal} className="close-btn">
             <span className="close-btn-text">X</span>
           </button>
         </form>
@@ -124,7 +108,7 @@ export default function LecturePage() {
         <div className="lectures-div">
           {currentClassroom ? (
             <ul className="lectures-list">
-              {currentClassroom.lectures.map((lecture, index) => (
+              {theClassroomsLectures.map((lecture, index) => (
                 <LectureItem lecture={lecture} key={index} />
               ))}
             </ul>

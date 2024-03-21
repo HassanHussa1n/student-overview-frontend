@@ -11,17 +11,25 @@ const LoginContext = createContext();
 function App() {
   const [teachers, setTeachers] = useState([]);
   const [classrooms, setClassrooms] = useState([]);
-  const [theUsersClassrooms, setTheUserClassrooms] = useState([]);
   //Set currentuser = null if localStorage is not saved(logged out)
   const [currentUser, setCurrentUser] = useState(null);
   //Set current classroom with simular logic as currentuser
   const [currentClassroom, setCurrentClassroom] = useState(null);
-  //Usestate for creating new classroom
+  //Usestates for rerender after post
+  const [theUsersClassrooms, setTheUserClassrooms] = useState([]);
+  const [theClassroomsLectures, setTheClassroomsLectures] = useState([]);
+  //Usestate for creating (postrequests)
   const [newClassroom, setNewClassroom] = useState({
     teacherId: "",
     name: "",
     startDate: "",
     endDate: "",
+  });
+  const [newExercise, setNewExercise] = useState({
+    lectureId: "",
+    description: "",
+    linkToRepo: "",
+    name: "",
   });
 
   //Set the loggedin user the the last logged in
@@ -67,7 +75,7 @@ function App() {
     fetch(`http://localhost:4000/classroom`)
       .then((response) => response.json())
       .then((item) => setClassrooms(item));
-  }, []);
+  }, [newExercise]);
 
   //UseEffect for the currentusers' classrooms
   useEffect(() => {
@@ -75,6 +83,13 @@ function App() {
       setTheUserClassrooms([...currentUser.classrooms]);
     }
   }, [teachers, currentUser]);
+
+  //UseEffect for the currentclassrom's lectures
+  useEffect(() => {
+    if (currentClassroom) {
+      setTheClassroomsLectures([...currentClassroom.lectures]);
+    }
+  }, [classrooms, currentClassroom]);
 
   return (
     <div className="container">
@@ -91,6 +106,9 @@ function App() {
             setNewClassroom,
             theUsersClassrooms,
             setTeachers,
+            newExercise,
+            setNewExercise,
+            theClassroomsLectures,
           }}
         >
           <Main />

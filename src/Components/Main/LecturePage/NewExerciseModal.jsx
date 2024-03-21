@@ -1,18 +1,13 @@
 import Modal from "react-modal";
-import { useState } from "react";
+import { useContext } from "react";
+import { MyContext } from "../../../App";
 export default function NewExerciseModal({
   createIsOpen,
   createOnClose,
   createCloseModal,
   lecture,
 }) {
-  const [newExercise, setNewExercise] = useState({
-    lectureId: "",
-    description: "",
-    linkToRepo: "",
-    name: "",
-  });
-
+  const { newExercise, setNewExercise } = useContext(MyContext);
   const handleInputChange = (e) => {
     if (e.target.name === "name") {
       setNewExercise({

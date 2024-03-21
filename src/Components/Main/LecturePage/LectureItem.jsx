@@ -1,20 +1,26 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { MyContext } from "../../../App";
 import Modal from "react-modal";
 import NewExerciseModal from "./NewExerciseModal";
 export default function LectureItem(props) {
-  const { currentClassroom } = useContext(MyContext);
+  const { currentClassroom, newExercise, classrooms } = useContext(MyContext);
   const { lecture } = props;
   const [modalOpen, setModalOpen] = useState(false);
   const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [theExercises, setTheExercises] = useState([]);
   const [editedLecture, setEditedLecture] = useState({
     classroomId: currentClassroom.id,
     name: lecture.name,
     description: lecture.description,
     startDate: lecture.startDate,
     endDate: lecture.endDate,
-    exercises: lecture.exercises
+    exercises: lecture.exercises,
   });
+
+  //UseEffect for the exercises
+  useEffect(() => {
+    setTheExercises([...editedLecture.exercises]);
+  }, [classrooms,newExercise]);
 
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
@@ -31,18 +37,21 @@ export default function LectureItem(props) {
     }
   };
 
-  console.log(lecture)
+  console.log(lecture);
   const handleSubmit = async () => {
-    console.log(JSON.stringify(editedLecture))
-    
+    console.log(JSON.stringify(editedLecture));
+
     try {
-      const response = await fetch(`http://localhost:4000/lecture/${lecture.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(editedLecture),
-      });
+      const response = await fetch(
+        `http://localhost:4000/lecture/${lecture.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(editedLecture),
+        }
+      );
 
       if (response.ok) {
         console.log("Lecture updated successfully: ", lecture);
@@ -72,15 +81,24 @@ export default function LectureItem(props) {
 
   const deleteLecture = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/lecture/${lecture.id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `http://localhost:4000/lecture/${lecture.id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (response.ok) {
-        console.log("Lecture deleted successfully, at: ", `http://localhost:4000/lecture/${lecture.id}`);
+        console.log(
+          "Lecture deleted successfully, at: ",
+          `http://localhost:4000/lecture/${lecture.id}`
+        );
         closeModal();
       } else {
-        console.error("Failed to delete lecture, at: ", `http://localhost:4000/lecture/${lecture.id}`);
+        console.error(
+          "Failed to delete lecture, at: ",
+          `http://localhost:4000/lecture/${lecture.id}`
+        );
       }
     } catch (error) {
       console.error("Error:", error);
@@ -140,40 +158,37 @@ export default function LectureItem(props) {
             placeholder="End Date"
             onChange={handleInputChange}
           />
-          {editedLecture.exercises.map((exercise, index) => {
-  return (
-    <div key={index}>
-      <p>Exercise {index + 1}</p>
-      <input
-        type="text"
-        name={`exerciseName${index}`}
-        value={exercise.name}
-        placeholder="Name"
-        onChange={(e) => handleInputChange(e, index)}
-      />
-      <input
-        type="text"
-        name={`exerciseLink${index}`}
-        value={exercise.linkToRepo}
-        placeholder="Link to Repo"
-        onChange={(e) => handleInputChange(e, index)}
-      />
-    </div>
-  );
-})}
+          {theExercises.map((exercise, index) => {
+            return (
+              <div key={index}>
+                <p>Exercise {index + 1}</p>
+                <input
+                  type="text"
+                  name={`exerciseName${index}`}
+                  value={exercise.name}
+                  placeholder="Name"
+                  onChange={(e) => handleInputChange(e, index)}
+                />
+                <input
+                  type="text"
+                  name={`exerciseLink${index}`}
+                  value={exercise.linkToRepo}
+                  placeholder="Link to Repo"
+                  onChange={(e) => handleInputChange(e, index)}
+                />
+              </div>
+            );
+          })}
 
           <button type="button" onClick={handleSubmit} className="submit-btn">
             Confirm Edit
           </button>
-          
-          <button type="button"
-          className="delete-btn" onClick={deleteLecture}>Delete Lecture</button>
 
-          <button
-            type="button"
-            onClick={closeModal}
-            className="close-btn"
-          >
+          <button type="button" className="delete-btn" onClick={deleteLecture}>
+            Delete Lecture
+          </button>
+
+          <button type="button" onClick={closeModal} className="close-btn">
             <span className="close-btn-text">X</span>
           </button>
         </form>

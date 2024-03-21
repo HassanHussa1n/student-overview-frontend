@@ -1,12 +1,17 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 
+import axios from "axios";
+
 export default function GradeItem(props) {
   const [selectedGrade, setSelectedGrade] = useState(props.gradeItem.grade);
 
   const handleChange = (event) => {
     setSelectedGrade(parseInt(event.target.value));
-    props.setUpdateGrade({ ...props.gradeItem, grade: selectedGrade });
+    props.setUpdateGrade({
+      ...props.gradeItem,
+      grade: Number(event.target.value),
+    });
   };
 
   return (
