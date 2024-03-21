@@ -410,9 +410,11 @@ ul {
 
 .classroom-page {
   max-width: 800px;
+  width: 110lvb;
   margin: 0 auto;
   font-style: italic;
   padding: 20px;
+  border: solid;
   color: black;
   background-color: lightgray;
   border-radius: 10px;
