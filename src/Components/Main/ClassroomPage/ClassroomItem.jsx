@@ -24,8 +24,9 @@ export default function ClassroomItem(props) {
       <p>{props.classroomItem.name}</p>
       <p>Starts: {props.classroomItem.startDate}</p>
       <p>Ends: {props.classroomItem.endDate}</p>
-      <button onClick={changeClassroom}>Choose classroom</button>
-      <button onClick={end}>End usage</button>
+      <button onClick={changeClassroom} className="changeroom-btn">Choose classroom</button>
+      <button onClick={end}
+      className="enduse-btn">End usage</button>
     </li>
   );
 }

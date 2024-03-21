@@ -4,6 +4,7 @@ import { MyContext } from "../../../App.jsx";
 export default function HomePage() {
   const { currentUser } = useContext(MyContext);
   const [notes, setNotes] = useState([]);
+  console.log(currentUser.notes)
 
   useEffect(() => {
     const storedNotes = localStorage.getItem(`notes-${currentUser.id}`);
