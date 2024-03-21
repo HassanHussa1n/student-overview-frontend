@@ -8,13 +8,14 @@ export default function StudentViewModal({
   onClose,
   closeModal,
   student,
-  setUpdateGrade,
-  currentClassroom
+  currentClassroom,
 }) {
   //Retrieve the grades for the student
   const [grades, setGrades] = useState([]);
   const [gradeList, setGradeList] = useState([]);
-  const [editedStudent, setEditedStudent] = useState({...student});
+  const [editedStudent, setEditedStudent] = useState({ ...student });
+  //Selected grade to handle the change of the grade.
+  const [updateGrade, setUpdateGrade] = useState({});
 
   useEffect(() => {
     setGrades(student.evaluations);
@@ -40,19 +41,34 @@ export default function StudentViewModal({
   };
 
   const saveChanges = () => {
-    
-    console.log(currentClassroom.id)
-    console.log(grades)
-    console.log(editedStudent)
-    axios.put(`http://localhost:4000/student/${student.id}`, {...editedStudent, classroomId: currentClassroom.id})
-    .then(response => {
-      console.log("Edited student: ", response.data);
-      setUpdateGrade(response.data)
-      closeModal()
-    })
-    .catch(error => {
-      console.error("Error updating student: ", error)
-    })
+    console.log(currentClassroom.id);
+    console.log(grades);
+    console.log(editedStudent);
+    axios
+      .put(`http://localhost:4000/student/${student.id}`, {
+        ...editedStudent,
+        classroomId: currentClassroom.id,
+      })
+      .then((response) => {
+        console.log("Edited student: ", response.data);
+        closeModal();
+      })
+      .catch((error) => {
+        console.error("Error updating student: ", error);
+      });
+
+    axios
+      .put(`http://localhost:4000/evaluation`, {
+        ...updateGrade,
+        exerciseId: currentClassroom.id,
+      })
+      .then((response) => {
+        console.log("Edited grade: ", response.data);
+        closeModal();
+      })
+      .catch((error) => {
+        console.error("Error updating grade: ", error);
+      });
   };
 
   return (
@@ -72,6 +88,7 @@ export default function StudentViewModal({
                 return (
                   <GradeItem
                     setUpdateGrade={setUpdateGrade}
+                    updateGrade={updateGrade}
                     gradeItem={gradeItem}
                     key={index}
                   />

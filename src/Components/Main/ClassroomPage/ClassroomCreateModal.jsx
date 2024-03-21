@@ -1,18 +1,13 @@
 import Modal from "react-modal";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { MyContext } from "../../../App.jsx";
 export default function ClassroomCreateModal({
   createIsOpen,
   createOnClose,
   createCloseModal,
 }) {
-  const {
-    currentUser,
-    newClassroom,
-    setNewClassroom,
-    currentClassroom,
-    setCurrentClassroom,
-  } = useContext(MyContext);
+  const { currentUser, newClassroom, setNewClassroom, setCurrentUser } =
+    useContext(MyContext);
 
   const handleInputChange = (e) => {
     if (e.target.name === "name") {
@@ -49,6 +44,8 @@ export default function ClassroomCreateModal({
           "Content-Type": "application/json",
         },
         body: JSON.stringify(newClassroom),
+      }).then((newClassroom) => {
+        setNewClassroom(newClassroom);
       });
 
       //Reset the fields
@@ -59,10 +56,10 @@ export default function ClassroomCreateModal({
         endDate: "",
         teacherId: "",
       });
-      setCurrentClassroom(newClassroom);
       console.log("Classroom added", newClassroom);
+      //Something like this?
+      setCurrentUser({ ...currentUser, level: "createmaster" });
     }
-
     createCloseModal();
   };
   return (

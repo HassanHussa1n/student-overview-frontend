@@ -60,7 +60,7 @@ function App() {
     fetch(`http://localhost:4000/teacher`)
       .then((response) => response.json())
       .then((item) => setTeachers(item));
-  }, []);
+  }, [newClassroom]);
 
   //UseEffect for classrooms
   useEffect(() => {
@@ -72,9 +72,9 @@ function App() {
   //UseEffect for the currentusers' classrooms
   useEffect(() => {
     if (currentUser) {
-      setTheUserClassrooms(currentUser.classrooms);
+      setTheUserClassrooms([...currentUser.classrooms]);
     }
-  }, [newClassroom, currentUser]);
+  }, [teachers, currentUser]);
 
   return (
     <div className="container">
@@ -90,6 +90,7 @@ function App() {
             newClassroom,
             setNewClassroom,
             theUsersClassrooms,
+            setTeachers,
           }}
         >
           <Main />

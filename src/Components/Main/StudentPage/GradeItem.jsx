@@ -6,7 +6,7 @@ export default function GradeItem(props) {
 
   const handleChange = (event) => {
     setSelectedGrade(parseInt(event.target.value));
-    props.setUpdateGrade(props.gradeItem);
+    props.setUpdateGrade({ ...props.gradeItem, grade: selectedGrade });
   };
 
   return (
