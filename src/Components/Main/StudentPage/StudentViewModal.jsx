@@ -17,6 +17,9 @@ export default function StudentViewModal({
   //Selected grade to handle the change of the grade.
   const [updateGrade, setUpdateGrade] = useState({});
 
+  console.log(updateGrade)
+
+
   useEffect(() => {
     setGrades(student.evaluations);
   }, [student.evaluations]);
@@ -64,6 +67,7 @@ export default function StudentViewModal({
       })
       .then((response) => {
         console.log("Edited grade: ", response.data);
+        console.log(updateGrade)
         closeModal();
       })
       .catch((error) => {

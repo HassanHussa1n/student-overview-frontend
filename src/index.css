@@ -327,6 +327,7 @@ ul {
   position: fixed;
   top: 0;
   right: 0;
+  height: 60px;
   margin: 10px;
   z-index: 9999;
   border-radius: 30px;
