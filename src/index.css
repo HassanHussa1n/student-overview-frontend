@@ -13,6 +13,39 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.login-page {
+  height: 80vh;
+  width: 80vh;
+  max-width: 800px;
+  margin: 0 auto;
+  font-style: italic;
+  padding: 20px;
+  color: black;
+  background-color: lightgray;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login-page input[type="text"],
+.login-page input[type="submit"] {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.login-page label {
+  margin-bottom: 10px;
+}
+
+.login-page input[type="submit"] {
+  background-color: #0e60dc;
+  color: white;
+  font-family: "Righteous";
+  cursor: pointer;
+}
+
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -149,7 +182,8 @@ ul {
 .swap-classroom-btn,
 .edit-classroom-btn,
 .edit-student-btn,
-.submit-btn.add-note-btn {
+.submit-btn,
+.add-note-btn {
   background-color: #0e60dc;
   border: none;
   color: white;
@@ -296,6 +330,10 @@ ul {
   margin: 10px;
   z-index: 9999;
   border-radius: 30px;
+}
+
+.bobslogo {
+  height: 150px;
 }
 
 .note {

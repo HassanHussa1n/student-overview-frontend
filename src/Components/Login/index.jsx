@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { LoginContext } from "../../App.jsx";
 import { useNavigate } from "react-router-dom";
+import BobsLogo from "../../assets/images/BobsLogo2-transparent.png";
+
 export default function Login() {
   const { setCurrentUser, teachers } = useContext(LoginContext);
   const [id, setId] = useState(0);
@@ -23,7 +25,13 @@ export default function Login() {
     }
   };
   return (
-    <div>
+    <div className="login-page">
+      <div className="login-intro">
+      <img src={BobsLogo} alt="BobsLogo" className="bobslogo" />
+        <h1>Welcome to Bob's Grading!</h1>
+        
+
+      </div>
       {errorBool && <h3>{errorMessage}</h3>}
       <form onSubmit={handleSubmit}>
         <label htmlFor="first">Write your id</label>
