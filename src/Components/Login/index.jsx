@@ -14,7 +14,7 @@ export default function Login() {
     event.preventDefault();
     if (!teachers.find((useritem) => Number(useritem.id) === Number(id))) {
       //Confirm there is an error finding username
-      setErrorMessage("Wrong username");
+      setErrorMessage("Wrong username or password");
       setErrorBool(true);
     } else {
       setCurrentUser(
@@ -27,23 +27,30 @@ export default function Login() {
   return (
     <div className="login-page">
       <div className="login-intro">
-      <img src={BobsLogo} alt="BobsLogo" className="bobslogo" />
+        <img src={BobsLogo} alt="BobsLogo" className="bobslogo" />
         <h1>Welcome to Bob's Grading!</h1>
-        
-
       </div>
       {errorBool && <h3>{errorMessage}</h3>}
       <form onSubmit={handleSubmit}>
-        <label htmlFor="first">Write your id</label>
-        <input
-          type="text"
-          id="first"
-          name="first"
-          onChange={(e) => setId(e.target.value)}
-          value={id}
-        />
+        <div className="login-form">
+          <label htmlFor="first">Write your id</label>
+          <input
+            type="text"
+            id="first"
+            name="first"
+            onChange={(e) => setId(e.target.value)}
+            value={id}
+          />
+          <label htmlFor="password">Write your password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="password"
+          />
 
-        <input type="submit" value="Login!" />
+          <input type="submit" value="Login!" />
+        </div>
       </form>
     </div>
   );

@@ -26,16 +26,34 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.login-page input[type="text"],
-.login-page input[type="submit"] {
+.login-page input[type="text"] {
   padding: 10px;
   margin-bottom: 15px;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
-
+.login-page input[type="password"] {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  margin-left: 65px;
+  border: 1px solid #ccc;
+}
+.login-page input[type="submit"] {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+}
 .login-page label {
-  margin-bottom: 10px;
+  display: block;
+  margin-right: 10px;
+}
+.login-form {
+  display: block;
+  align-items: center;
+  margin-bottom: 5px;
 }
 
 .login-page input[type="submit"] {
