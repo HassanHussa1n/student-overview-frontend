@@ -5,6 +5,7 @@ import { MyContext } from "../../../App";
 export default function LecturePage() {
   const { currentClassroom, theClassroomsLectures } = useContext(MyContext);
   const [modalOpen, setModalOpen] = useState(false);
+  const [lectures, setLectures] = useState([])
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -23,6 +24,8 @@ export default function LecturePage() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,6 +54,35 @@ export default function LecturePage() {
       console.error("Error:", error);
     }
   };
+
+  
+
+  
+  useEffect(() => {
+    const fetchLectures = async () => {
+      try {
+        const response = await fetch("http://localhost:4000/lecture", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.ok) {
+          console.log("Got lectures");
+          const lecturesData = await response.json();
+          setLectures(lecturesData);
+        } else {
+          console.error("Failed to get lecture");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchLectures();
+  }, []);
+  
 
   return (
     <>

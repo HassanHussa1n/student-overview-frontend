@@ -67,8 +67,9 @@ export default function HomePage() {
       </h1>
 
       <div>
-        <h2>Look who's back! </h2>
+        <h2>Welcome back! </h2>
         <br></br>
+        <div className="lecture-display">
         {theLecture && (
           <div>
             <h3>Todays lecture: {theLecture.name}</h3>
@@ -76,6 +77,7 @@ export default function HomePage() {
           </div>
         )}
         {!theLecture && <p>Can't find any lectures for today.</p>}
+        </div>
         <br></br>
         <p>
           Hope you are well, {currentUser.firstName}. Inside of this little box,
@@ -85,7 +87,7 @@ export default function HomePage() {
         </p>
 
         <form onSubmit={handleSubmit} style={{ textAlign: "center" }}>
-          <textarea name="note" rows="3" cols="30" placeholder="Add a note" />
+          <textarea name="note" rows="3" cols="30" className="note-textarea" placeholder="Add a note" />
           <br />
           <button type="submit" className="add-note-btn">
             Add Note

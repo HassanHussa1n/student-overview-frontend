@@ -314,6 +314,12 @@ ul {
   color: white;
 }
 
+.lecture-display {
+  border: solid;
+  border-radius: 15px;
+  background-color: lightgray;
+}
+
 .log-out-btn {
   background-color: #ffffff;
   border: none;
@@ -540,6 +546,17 @@ input[type="email"] {
 
 .custom-modal textarea {
   width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.note-textarea {
+  width: 90%;
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
