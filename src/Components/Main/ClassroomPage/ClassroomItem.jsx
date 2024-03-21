@@ -12,6 +12,8 @@ export default function ClassroomItem(props) {
       (item) => Number(item.id) === Number(classroomId)
     );
     setCurrentClassroom(foundClassroom);
+
+  
   };
 
   const end = () => {
