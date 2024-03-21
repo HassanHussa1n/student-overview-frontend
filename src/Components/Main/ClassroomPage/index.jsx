@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import ClassroomViewModal from "./ClassroomViewModal.jsx";
 import { MyContext } from "../../../App.jsx";
 import ClassroomCreateModal from "./ClassroomCreateModal.jsx";
+import axios from "axios";
 
 export default function ClassroomPage() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -9,12 +10,27 @@ export default function ClassroomPage() {
   const [name, setName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [updateClassroom, setUpdateClassroom] = useState({});
   const { currentClassroom } = useContext(MyContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
-    console.log("Form submitted:", { name, startDate, endDate });
+    if (currentClassroom) {
+      setUpdateClassroom({ ...updateClassroom, id: currentClassroom.id });
+      axios
+        .put(
+          `http://localhost:4000/classroom/${currentClassroom.id}`,
+          updateClassroom
+        )
+        .then((response) => {
+          console.log("Edited student: ", response.data);
+          closeModal();
+        })
+        .catch((error) => {
+          console.error("Error updating student: ", error);
+        });
+    }
   };
 
   //UseEffect for states
@@ -81,8 +97,10 @@ export default function ClassroomPage() {
               type="text"
               id="name"
               className="input-field"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={updateClassroom.name}
+              onChange={(e) =>
+                setUpdateClassroom({ ...updateClassroom, name: e.target.value })
+              }
             />
           </div>
           <div className="form-group">
@@ -91,8 +109,13 @@ export default function ClassroomPage() {
               type="text"
               id="startDate"
               className="input-field"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
+              value={updateClassroom.startDate}
+              onChange={(e) =>
+                setUpdateClassroom({
+                  ...updateClassroom,
+                  startDate: e.target.value,
+                })
+              }
             />
           </div>
           <div className="form-group">
@@ -101,8 +124,13 @@ export default function ClassroomPage() {
               type="text"
               id="endDate"
               className="input-field"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
+              value={updateClassroom.endDate}
+              onChange={(e) =>
+                setUpdateClassroom({
+                  ...updateClassroom,
+                  endDate: e.target.value,
+                })
+              }
             />
           </div>
           <button type="submit" className="edit-classroom-btn">

@@ -16,9 +16,6 @@ export default function StudentViewModal({
   const [editedStudent, setEditedStudent] = useState({ ...student });
   //Selected grade to handle the change of the grade.
   const [updateGrade, setUpdateGrade] = useState({});
-  if (updateGrade.exercise) {
-    console.log("update", updateGrade);
-  }
   useEffect(() => {
     setGrades(student.evaluations);
   }, [student.evaluations]);
@@ -43,9 +40,6 @@ export default function StudentViewModal({
   };
 
   const saveChanges = () => {
-    console.log(currentClassroom.id);
-    console.log(grades);
-    console.log(editedStudent);
     const gradeToUpdate = {
       id: updateGrade.id,
       grade: updateGrade.grade,
@@ -64,8 +58,6 @@ export default function StudentViewModal({
       .catch((error) => {
         console.error("Error updating student: ", error);
       });
-
-    console.log("this is the grad", gradeToUpdate.id);
 
     axios
       .put(

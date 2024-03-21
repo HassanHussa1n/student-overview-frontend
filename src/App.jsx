@@ -51,7 +51,6 @@ function App() {
       const keyname = "user" + currentUser.id;
       //Get the value of current classroom
       const classroomId = localStorage.getItem(keyname);
-      console.log("classid:", classroomId);
       if (classroomId && currentUser.classrooms) {
         const foundClassroom = currentUser.classrooms.find(
           (item) => Number(item.id) === Number(classroomId)
