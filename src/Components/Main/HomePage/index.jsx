@@ -2,20 +2,23 @@ import { useState, useEffect, useContext } from "react";
 import { MyContext } from "../../../App.jsx";
 
 export default function HomePage() {
-  const { currentUser } = useContext(MyContext);
+  const { currentUser, currentClassroom } = useContext(MyContext);
   const [notes, setNotes] = useState([]);
-  console.log(currentUser.notes)
+  const [theLecture, setTheLecture] = useState(null);
+  console.log(currentUser.notes);
 
   useEffect(() => {
     const storedNotes = localStorage.getItem(`notes-${currentUser.id}`);
     if (storedNotes) {
       setNotes(JSON.parse(storedNotes));
     }
-  }, [currentUser.id]);
+  }, [currentUser]);
 
   useEffect(() => {
-    localStorage.setItem(`notes-${currentUser.id}`, JSON.stringify(notes));
-  }, [notes, currentUser.id]);
+    if (notes.length !== 0) {
+      localStorage.setItem(`notes-${currentUser.id}`, JSON.stringify(notes));
+    }
+  }, [notes, currentUser]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,10 +30,35 @@ export default function HomePage() {
   };
 
   const handleDelete = (index) => {
-    const updatedNotes = [...notes];
-    updatedNotes.splice(index, 1);
-    setNotes(updatedNotes);
+    if (notes.length === 1) {
+      setNotes([]);
+      localStorage.removeItem(`notes-${currentUser.id}`);
+    } else {
+      const updatedNotes = [...notes];
+      updatedNotes.splice(index, 1);
+      setNotes(updatedNotes);
+    }
   };
+  useEffect(() => {
+    if (currentClassroom) {
+      for (let i = 0; i < currentClassroom.lectures.length; i++) {
+        const theStartDate = currentClassroom.lectures[i].startDate;
+        const formattedStartDate = theStartDate.replace(/-/g, "");
+        const today = new Date();
+        const year = today.getFullYear();
+        let month = today.getMonth() + 1;
+        const day = today.getDate();
+        if (month < 10) {
+          month = "0" + month;
+        }
+        const thisDate = year + "" + month + "" + day;
+        console.log(thisDate);
+        if (Number(formattedStartDate) === Number(thisDate)) {
+          setTheLecture(currentClassroom.lectures[i]);
+        }
+      }
+    }
+  }, [currentClassroom]);
 
   return (
     <div>
@@ -40,6 +68,15 @@ export default function HomePage() {
 
       <div>
         <h2>Look who's back! </h2>
+        <br></br>
+        {theLecture && (
+          <div>
+            <h3>Todays lecture: {theLecture.name}</h3>
+            <p>Description: {theLecture.description}</p>
+          </div>
+        )}
+        {!theLecture && <p>Can't find any lectures for today.</p>}
+        <br></br>
         <p>
           Hope you are well, {currentUser.firstName}. Inside of this little box,
           you can add your notes for the lectures you will be having today. Feel
