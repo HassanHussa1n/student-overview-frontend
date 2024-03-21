@@ -45,7 +45,6 @@
   cursor: pointer;
 }
 
-
 a {
   font-weight: 500;
   color: #646cff;
@@ -216,7 +215,6 @@ ul {
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-
 .lectures-div {
   margin-left: 20px;
   border: solid;
@@ -252,7 +250,7 @@ ul {
   display: inline-block;
   font-family: "Righteous";
   font-size: 12px;
-  margin: 30px 10px  ;
+  margin: 30px 10px;
   cursor: pointer;
   border-radius: 10px;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -361,7 +359,7 @@ ul {
 }
 
 .teacher {
-  width:500px;
+  width: 500px;
   background-color: #f9f9f9;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -489,7 +487,6 @@ input[type="email"] {
 }
 
 .p-emailValue {
-  
   border-bottom: 0.5px solid;
 }
 
@@ -499,7 +496,6 @@ input[type="email"] {
 }
 
 .p-phoneValue {
-  
   border-bottom: 0.5px solid;
 }
 
@@ -520,7 +516,6 @@ input[type="email"] {
   border: solid black;
   border-radius: 7px;
   padding: 5px;
-  
 }
 
 .custom-modal textarea {
@@ -534,8 +529,6 @@ input[type="email"] {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
-
 /* Define the scrollbar style */
 ::-webkit-scrollbar {
   width: 15px;
@@ -544,7 +537,7 @@ input[type="email"] {
 
 /* Define the thumb style */
 ::-webkit-scrollbar-thumb {
-   background: linear-gradient(to bottom right, #4d7fff 0%, #1a56ff 100%);
+  background: linear-gradient(to bottom right, #4d7fff 0%, #1a56ff 100%);
   border-radius: 5px;
 }
 

@@ -57,8 +57,6 @@ export default function ClassroomCreateModal({
         teacherId: "",
       });
       console.log("Classroom added", newClassroom);
-      //Something like this?
-      setCurrentUser({ ...currentUser, level: "createmaster" });
     }
     createCloseModal();
   };

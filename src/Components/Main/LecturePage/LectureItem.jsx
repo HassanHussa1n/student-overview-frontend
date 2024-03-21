@@ -37,7 +37,7 @@ export default function LectureItem(props) {
     }
   };
 
-  console.log(lecture);
+  
   const handleSubmit = async () => {
     console.log(JSON.stringify(editedLecture));
 
