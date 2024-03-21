@@ -10,6 +10,7 @@ export default function ClassroomViewModal({ isOpen, onClose, closeModal }) {
       isOpen={isOpen}
       onRequestClose={onClose}
       appElement={document.getElementById("root")}
+      className="custom-modal"
     >
       {theUsersClassrooms ? (
         <div>
