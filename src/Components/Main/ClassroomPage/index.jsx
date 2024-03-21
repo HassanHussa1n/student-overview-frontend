@@ -7,22 +7,28 @@ import axios from "axios";
 export default function ClassroomPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [createModalOpen, setCreateModalOpen] = useState(false);
-  const [name, setName] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [updateClassroom, setUpdateClassroom] = useState({});
-  const { currentClassroom } = useContext(MyContext);
+  const [updateClassroom, setUpdateClassroom] = useState({
+    name: "",
+    startDate: "",
+    endDate: ""
+  });
+  const { currentClassroom, currentUser } = useContext(MyContext);
+
+  useEffect(() => {
+    if (currentClassroom) {
+      setUpdateClassroom({...updateClassroom, name:currentClassroom.name,
+      startDate:currentClassroom.startDate,
+      endDate:currentClassroom.endDate});
+      
+    }
+  }, [currentClassroom]);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
     if (currentClassroom) {
-      setUpdateClassroom({ ...updateClassroom, id: currentClassroom.id });
       axios
-        .put(
-          `http://localhost:4000/classroom/${currentClassroom.id}`,
-          updateClassroom
-        )
+        .put(`http://localhost:4000/classroom/${currentClassroom.id}`, {...updateClassroom, teacherId: currentUser.id})
         .then((response) => {
           console.log("Edited classroom: ", response.data);
           closeModal();
@@ -35,32 +41,13 @@ export default function ClassroomPage() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    if (name === "name") {
-      setName(value);
-      setUpdateClassroom({ ...updateClassroom, name: value });
-    }
-    if (name === "startDate") {
-      setStartDate(value);
-      setUpdateClassroom({ ...updateClassroom, startDate: value });
-    }
-    if (name === "endDate") {
-      setEndDate(value);
-      setUpdateClassroom({ ...updateClassroom, endDate: value });
-    }
+    setUpdateClassroom((prevUpdateClassroom) => ({
+      ...prevUpdateClassroom,
+      [name]: value,
+    }));
   };
 
-  //UseEffect for states
-  useEffect(() => {
-    if (currentClassroom) {
-      setName(currentClassroom.name);
-      setStartDate(currentClassroom.startDate);
-      setEndDate(currentClassroom.endDate);
-    } else {
-      setName("");
-      setStartDate("");
-      setEndDate("");
-    }
-  }, [currentClassroom]);
+ 
 
   const openModal = () => {
     setModalOpen(true);
@@ -111,9 +98,9 @@ export default function ClassroomPage() {
             <label htmlFor="name">Name:</label>
             <input
               type="text"
-              id="name"
+              name="name"
               className="input-field"
-              value={name}
+              value={updateClassroom.name}
               onChange={handleInputChange}
             />
           </div>
@@ -121,9 +108,9 @@ export default function ClassroomPage() {
             <label htmlFor="startDate">Start Date:</label>
             <input
               type="text"
-              id="startDate"
+              name="startDate"
               className="input-field"
-              value={startDate}
+              value={updateClassroom.startDate}
               onChange={handleInputChange}
             />
           </div>
@@ -131,9 +118,9 @@ export default function ClassroomPage() {
             <label htmlFor="endDate">End Date:</label>
             <input
               type="text"
-              id="endDate"
+              name="endDate"
               className="input-field"
-              value={endDate}
+              value={updateClassroom.endDate}
               onChange={handleInputChange}
             />
           </div>
