@@ -24,12 +24,28 @@ export default function ClassroomPage() {
           updateClassroom
         )
         .then((response) => {
-          console.log("Edited student: ", response.data);
+          console.log("Edited classroom: ", response.data);
           closeModal();
         })
         .catch((error) => {
-          console.error("Error updating student: ", error);
+          console.error("Error updating classroom: ", error);
         });
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "name") {
+      setName(value);
+      setUpdateClassroom({ ...updateClassroom, name: value });
+    }
+    if (name === "startDate") {
+      setStartDate(value);
+      setUpdateClassroom({ ...updateClassroom, startDate: value });
+    }
+    if (name === "endDate") {
+      setEndDate(value);
+      setUpdateClassroom({ ...updateClassroom, endDate: value });
     }
   };
 
@@ -97,10 +113,8 @@ export default function ClassroomPage() {
               type="text"
               id="name"
               className="input-field"
-              value={updateClassroom.name}
-              onChange={(e) =>
-                setUpdateClassroom({ ...updateClassroom, name: e.target.value })
-              }
+              value={name}
+              onChange={handleInputChange}
             />
           </div>
           <div className="form-group">
@@ -109,13 +123,8 @@ export default function ClassroomPage() {
               type="text"
               id="startDate"
               className="input-field"
-              value={updateClassroom.startDate}
-              onChange={(e) =>
-                setUpdateClassroom({
-                  ...updateClassroom,
-                  startDate: e.target.value,
-                })
-              }
+              value={startDate}
+              onChange={handleInputChange}
             />
           </div>
           <div className="form-group">
@@ -124,13 +133,8 @@ export default function ClassroomPage() {
               type="text"
               id="endDate"
               className="input-field"
-              value={updateClassroom.endDate}
-              onChange={(e) =>
-                setUpdateClassroom({
-                  ...updateClassroom,
-                  endDate: e.target.value,
-                })
-              }
+              value={endDate}
+              onChange={handleInputChange}
             />
           </div>
           <button type="submit" className="edit-classroom-btn">
