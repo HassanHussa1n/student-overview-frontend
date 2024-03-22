@@ -25,33 +25,40 @@ export default function Login() {
     }
   };
   return (
-    <div className="login-page">
-      <div className="login-intro">
-        <img src={BobsLogo} alt="BobsLogo" className="bobslogo" />
-        <h1>Welcome to Bob's Grading!</h1>
-      </div>
-      {errorBool && <h3>{errorMessage}</h3>}
-      <form onSubmit={handleSubmit}>
-        <div className="login-form">
-          <label htmlFor="first">Write your id</label>
-          <input
-            type="text"
-            id="first"
-            name="first"
-            onChange={(e) => setId(e.target.value)}
-            value={id}
-          />
-          <label htmlFor="password">Write your password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="password"
-          />
-
-          <input type="submit" value="Login!" />
+    <>
+      {teachers.length !== 0 ? (
+        <div className="login-page">
+          <div className="login-intro">
+            <img src={BobsLogo} alt="BobsLogo" className="bobslogo" />
+            <h1>Welcome to Bob's Grading!</h1>
+          </div>
+          {errorBool && <h3>{errorMessage}</h3>}
+          <form onSubmit={handleSubmit}>
+            <div className="login-form">
+              <label htmlFor="first">Write your id</label>
+              <input
+                type="text"
+                id="first"
+                name="first"
+                onChange={(e) => setId(e.target.value)}
+                value={id}
+              />
+              <label htmlFor="password">Write your password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="password"
+              />
+              <input type="submit" value="Login!" />
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
+      ) : (
+        <div className="loading-container">
+          <p className="loading-text">Loading...</p>
+        </div>
+      )}
+    </>
   );
 }

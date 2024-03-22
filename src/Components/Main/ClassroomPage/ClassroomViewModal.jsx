@@ -18,7 +18,11 @@ export default function ClassroomViewModal({ isOpen, onClose, closeModal }) {
           <ul>
             {theUsersClassrooms.map((classroomItem, index) => {
               return (
-                <ClassroomItem classroomItem={classroomItem} key={index}/>
+                <ClassroomItem
+                  classroomItem={classroomItem}
+                  key={index}
+                  closeModal={closeModal}
+                />
               );
             })}
           </ul>
